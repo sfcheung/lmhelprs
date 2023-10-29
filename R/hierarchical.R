@@ -1,32 +1,50 @@
-#' @title One Line Title
+#' @title Check Models Hierarchy
 #'
-#' @description One paragraph description
+#' @description Check a list of 'lm'
+#' objects to see whether they are be
+#' ordered in a way for doing
+#' hierarchical regression analysis.
 #'
-#' @details Details
-#'   (Include subjects for verbs.)
-#'   (Use 3rd person forms for verbs.)
+#' @details Two models can be compared
+#' by hierarchical regression analysis
+#' if one model can be formed by adding
+#' one or more terms to the other model.
+#'
+#' This function checks whether a list
+#' of `lm` outputs can be ordered from
+#' the simplest model to the most
+#' complex model, with a more complex
+#' model formed by adding one or more
+#' terms to a simpler model.
 #'
 #' @return
-#' Specify what are returned.
+#' If the models can be ordered in a
+#' hierarchical way, the output is list
+#' of the original list of `lm` outputs,
+#' sorted from the model with the
+#' smallest number of terms to the model
+#' with the largest number of terms.
+#' If the models cannot be ordered this
+#' way, `NA` is returned.
 #'
-#' @param arg1 Argument description.
-#' @param ... Additional arguments.
+#' @param ... A list of the output
+#' of `lm()`, that is, a list of
+#' `lm`-class objects.
 #'
 #' @author Shu Fai Cheung <https://orcid.org/0000-0002-9871-9448>
 #'
-#' @references
-#' Cheung, S. F., Cheung, S.-H., Lau, E. Y. Y., Hui, C. H., & Vong, W. N.
-#' (2022) Improving an old way to measure moderation effect in standardized
-#' units. Advance online publication. *Health Psychology*.
-#' \doi{10.1037/hea0001188}
-#'
-#' @seealso [functionname()]
-#'
-#' @family relatedfunctions
+#' @seealso [lm()]
 #'
 #' @examples
-#' \donttest{
-#' }
+#'
+#' dat <- data_test1
+#' lm1 <- lm(y ~ x1 + x2, dat)
+#' lm2 <- lm(y ~ x1 + x2 + x3 + x4, dat)
+#' lm3 <- lm(y ~ x1 + cat1 + cat2 + x2 + x3 + x4, dat)
+#' lm4 <- lm(y ~ x1 + x2*x3 + x4, dat)
+#'
+#' hierarchical(lm1, lm4, lm2)
+#' hierarchical(lm3, lm4, lm2)
 #'
 #' @export
 #'
