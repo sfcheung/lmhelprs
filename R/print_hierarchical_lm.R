@@ -59,6 +59,8 @@ print.hierarchical_lm <- function(x,
                                   signif.stars = getOption("show.signif.stars"),
                                   eps.Pvalue = .001,
                                   ...) {
-    NextMethod()
+    NextMethod(digits = digits,
+               signif.stars = signif.stars,
+               eps.Pvalue = eps.Pvalue)
     invisible(x)
   }
