@@ -3,3 +3,5 @@
 S3method(print,hierarchical_lm)
 export(hierarchical)
 export(hierarchical_lm)
+export(highest_order)
+export(test_highest)

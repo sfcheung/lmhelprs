@@ -1,0 +1,33 @@
+library(lmhelprs)
+
+dat <- data_test1
+
+lm1a <- lm(y ~ x1 + x2, dat)
+lm1b <- lm(y ~ x1 + x2 + x3 + x4, dat)
+lm1c <- lm(y ~ x1 + x2 + x3 + x4 + cat2, dat)
+lm2a <- lm(y ~ x2 + x3 + cat1, dat)
+lm2b <- lm(y ~ x2 + x3 + cat1 + cat2, dat)
+lm3a <- lm(y ~ x1 + x2 + x3, dat)
+lm3b <- lm(y ~ x1 + x2*x3, dat)
+lm3c <- lm(y ~ x1 + x2 + x3 + I(x2*x3), dat)
+lm4a <- lm(y ~ x1 + x2 + cat2, dat)
+lm4b <- lm(y ~ x1 + x2*cat2, dat)
+lm5a <- lm(y ~ x1 + cat2 + cat1, dat)
+lm5b <- lm(y ~ x1 + cat2*cat1, dat)
+lm5d <- lm(y ~ x1 + cat2 + cat1 + cat2:cat1, dat)
+lm5e <- lm(y ~ x1 + cat2:cat1 + cat2 + cat1, dat)
+lm6a <- lm(y ~ x1 + cat2*cat1, dat)
+lm6b <- lm(y ~ x1 + cat2*cat1*x3, dat)
+lm11a <- lm(x2 ~ x1 + cat2*cat1*x3, dat)
+
+expect_error(lmhelprs:::highest_order(lm1b))
+expect_equal(lmhelprs:::highest_order(lm5d), "cat2:cat1")
+expect_equal(lmhelprs:::highest_order(lm5e), "cat2:cat1")
+expect_equal(lmhelprs:::highest_order(lm6a), "cat2:cat1")
+expect_equal(lmhelprs:::highest_order(lm6b), "cat2:cat1:x3")
+
+tmp1 <- test_highest(lm6b)
+expect_equal(tmp1[2, "Df"], 6)
+tmp2 <- test_highest(lm5d)
+expect_equal(tmp2[2, "Df"], 6)
+expect_error(test_highest(lm1b))
