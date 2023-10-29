@@ -62,7 +62,8 @@ lm2 <- lm(y ~ x1 + x2 + x3 + x4, dat)
 lm3 <- lm(y ~ x1 + cat1 + cat2 + x2 + x3 + x4, dat)
 lm4 <- lm(y ~ x1 + x2*x3 + x4, dat)
 
-hierarchical(lm1, lm3, lm2, lm4)
+hierarchical_lm(lm1, lm3, lm2)
+hierarchical_lm(lm1, lm2, lm4)
 
 }
 \seealso{
