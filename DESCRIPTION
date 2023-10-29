@@ -1,6 +1,6 @@
 Package: lmhelprs
 Title: Helper Functions for Linear Model Analysis
-Version: 0.1.0
+Version: 0.2.0
 Authors@R:
     c(person(given = "Shu Fai",
              family = "Cheung",
@@ -8,9 +8,9 @@ Authors@R:
              email = "shufai.cheung@gmail.com",
              comment = c(ORCID = "0000-0002-9871-9448")))
 Description: A collection of helper functions for multiple
-  regression models fitted by 'lm()'. Most of them are simple
+  regression models fitted by lm(). Most of them are simple
   functions for simple tasks which can be done with coding,
-  but may not be easy for occasional users of 'R'. Most of
+  but may not be easy for occasional users of R. Most of
   the tasks addressed are those sometimes needed when
   using the 'manymome' package (Cheung and Cheung, 2023,
   <doi:10.3758/s13428-023-02224-z>) and 'stdmod' package
