@@ -1,5 +1,6 @@
 ---
 title: "lmhelprs"
+author: "Shu Fai Cheung"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{lmhelprs}
@@ -14,6 +15,142 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
+
+# Introduction
+
+At the time of writing,
+[`lmhelprs`](https://sfcheung.github.io/lmhelprs/)
+has two sets of functions:
+
+- `hierarchical_lm()` for ordering
+  linear regression models in a hierarchical
+  way and use `anova()` to compare them.
+
+- `test_highest()` to identify the
+  highest order term in a linear
+  regression model and compare the model
+  to a model with this term removed.
+
+# Hierarchical Regression Analysis
+
+Users can use `anova()` manually to do
+hierarchical regression. `hierarchical_lm()`
+is written with these features:
+
+- Check whether the models are really
+  "hierarchical". If yes, order them
+  automatically. Users do not need to
+  put them in the correct order
+  manually.
+
+- Compute R-squared and R-squared
+  change and add them to the output.
+
+Let's fit three models for illustration:
+
+```{r}
 library(lmhelprs)
+data(data_test1)
+lm1a <- lm(y ~ x1 + x2, data_test1)
+lm1b <- lm(y ~ x1 + x2 + x3 + x4, data_test1)
+lm1c <- lm(y ~ x1 + x2 + x3 + x4 + cat2, data_test1)
 ```
+
+They are can be passed to
+`hierarchical_lm()` in any order.
+Hierarchical regression analysis
+will be conducted correctly, with
+R-squared and R-squared change:
+
+```{r}
+hierarchical_lm(lm1b, lm1a, lm1c)
+```
+
+If the models are not in hierarchical
+order, an error will be raised:
+
+```{r error = TRUE}
+lm2a <- lm(y ~ x1 + x2, data_test1)
+lm2b <- lm(y ~ x1 + x3 + x4, data_test1)
+hierarchical_lm(lm2a, lm2b)
+```
+
+Please refer to the help page of
+`hierarchical_lm()` on how it works,
+and the print method of its output
+(`print.hierarchical_lm()`) on how
+to customize the printout.
+
+# Test The Highest Order Term
+
+In a linear regression model with
+a term of second or higher order,
+the function `test_highest()` can be
+used to identify the highest order
+term, compare the model to a model
+with this term removed, and estimate
+and test the R-squared increase due
+to adding this term.
+
+For example:
+
+```{r}
+lm_mod <- lm(y ~ x1 + cat2 + cat1 + cat2:cat1, data_test1)
+summary(lm_mod)
+```
+
+Although it has six product terms,
+in terms of variables, it only has one
+higher order term: `cat2:cat1`, the
+interaction between `cat2` and `cat1`.
+
+To automatically find this term, and
+compare this model to a model without
+this interaction, `test_highest()`
+can be used:
+
+```{r}
+test_highest(lm_mod)
+```
+
+```{r echo = FALSE}
+mod_test <- test_highest(lm_mod)
+```
+
+The R-squared change due to adding
+this interaction (represented by
+six product terms) to a model without
+interaction is `r formatC(mod_test[2, "R.sq.change"], digits = 5, format = "f")`,
+and the *p*-value of this change is `r formatC(mod_test[2, "Pr(>F)"], digits = 3, format = "f")`.
+
+The function `test_highest()` can be
+used for third and higher order term.
+For example:
+
+```{r}
+lm_mod3 <- lm(y ~ x1 + x2 + x3*x4*cat2, data_test1)
+summary(lm_mod3)
+test_highest(lm_mod3)
+```
+
+The model with three-way interaction is
+compared to a model with only two-way
+interactions (`x3:x4`, `x3:cat2`, and
+`x4:cat2`).
+
+If a model has more than one term of
+the highest order, an error will be
+raised:
+
+```{r error = TRUE}
+lm_mod2 <- lm(y ~ x1 + x2*x3 + x2*x4, data_test1)
+test_highest(lm_mod2)
+```
+
+Please refer to the help page of
+`test_highest()` on how it works,
+
+# Issues
+
+If you have any suggestions and found any bugs, please feel
+feel to open a GitHub issue. Thanks.
