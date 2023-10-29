@@ -26,13 +26,13 @@ all_ps <- function(x) {
     out
   }
 
-expect_true(hierarchical_i(lm1a, lm1b))
-expect_false(hierarchical_i(lm1b, lm1a))
-expect_true(is.na(hierarchical_i(lm1b, lm1b)))
-expect_true(hierarchical_i(lm6a, lm6b))
-expect_false(hierarchical_i(lm6b, lm6a))
-expect_true(is.na(hierarchical_i(lm6a, lm6a)))
-expect_true(is.na(hierarchical_i(lm1a, lm2a)))
+expect_true(lmhelprs:::hierarchical_i(lm1a, lm1b))
+expect_false(lmhelprs:::hierarchical_i(lm1b, lm1a))
+expect_true(is.na(lmhelprs:::hierarchical_i(lm1b, lm1b)))
+expect_true(lmhelprs:::hierarchical_i(lm6a, lm6b))
+expect_false(lmhelprs:::hierarchical_i(lm6b, lm6a))
+expect_true(is.na(lmhelprs:::hierarchical_i(lm6a, lm6a)))
+expect_true(is.na(lmhelprs:::hierarchical_i(lm1a, lm2a)))
 
 tmp <- hierarchical(lm1b, lm1a, lm1c)
 expect_equal(all_ps(tmp), c(2, 4, 5))

@@ -7,19 +7,23 @@
 hierarchical(...)
 }
 \arguments{
-\item{...}{A list of the output
-of \code{lm()}, that is, a list of
-\code{lm}-class objects.}
+\item{...}{The outputs of \code{lm()},
+that is, one or more \code{lm}-class
+objects. The outputs of other model
+fitting functions may also be used,
+but should be used with cautions.
+Please refer to the "How it works"
+section in "Details."}
 }
 \value{
 If the models can be ordered in a
-hierarchical way, the output is list
-of the original list of \code{lm} outputs,
-sorted from the model with the
-smallest number of terms to the model
-with the largest number of terms.
-If the models cannot be ordered this
-way, \code{NA} is returned.
+hierarchical way, the output is a
+list of the original \code{lm}
+outputs, sorted from the model with
+the smallest number of terms to the
+model with the largest number of
+terms. If the models cannot be
+ordered this way, \code{NA} is returned.
 }
 \description{
 Check a list of 'lm'
@@ -39,6 +43,22 @@ the simplest model to the most
 complex model, with a more complex
 model formed by adding one or more
 terms to a simpler model.
+\subsection{How it works}{
+
+It extracts the terms in each model
+by \code{\link[stats:terms]{stats::terms()}} and then extracts
+the labels of the terms by
+\code{\link[=labels]{labels()}}. The labels are then used
+to determine the hierarchical order.
+
+Therefore, in principle, this
+function can be used for the outputs
+of other model fitting functions as
+long as their outputs support the
+\code{\link[stats:terms]{stats::terms()}} and the labels can
+be used to determine hierarchical
+order of two models.
+}
 }
 \examples{
 
@@ -48,12 +68,15 @@ lm2 <- lm(y ~ x1 + x2 + x3 + x4, dat)
 lm3 <- lm(y ~ x1 + cat1 + cat2 + x2 + x3 + x4, dat)
 lm4 <- lm(y ~ x1 + x2*x3 + x4, dat)
 
+# The order of entry does not matter
 hierarchical(lm1, lm4, lm2)
+
+# The following three models yield NA
 hierarchical(lm3, lm4, lm2)
 
 }
 \seealso{
-\code{\link[=lm]{lm()}}
+\code{\link[stats:lm]{stats::lm()}}
 }
 \author{
 Shu Fai Cheung \url{https://orcid.org/0000-0002-9871-9448}
