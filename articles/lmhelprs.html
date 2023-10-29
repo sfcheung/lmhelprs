@@ -28,7 +28,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">lmhelprs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9007</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9008</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -71,6 +71,8 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>lmhelprs</h1>
+                        <h4 data-toc-skip class="author">Shu Fai
+Cheung</h4>
             
       
       <small class="dont-index">Source: <a href="https://github.com/sfcheung/lmhelprs/blob/HEAD/vignettes/lmhelprs.Rmd" class="external-link"><code>vignettes/lmhelprs.Rmd</code></a></small>
@@ -79,9 +81,193 @@
 
     
     
+<div class="section level2">
+<h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h2>
+<p>At the time of writing, <a href="https://sfcheung.github.io/lmhelprs/"><code>lmhelprs</code></a>
+has two sets of functions:</p>
+<ul>
+<li><p><code><a href="../reference/hierarchical_lm.html">hierarchical_lm()</a></code> for ordering linear regression
+models in a hierarchical way and use <code><a href="https://rdrr.io/r/stats/anova.html" class="external-link">anova()</a></code> to compare
+them.</p></li>
+<li><p><code><a href="../reference/test_highest.html">test_highest()</a></code> to identify the highest order term in
+a linear regression model and compare the model to a model with this
+term removed.</p></li>
+</ul>
+</div>
+<div class="section level2">
+<h2 id="hierarchical-regression-analysis">Hierarchical Regression Analysis<a class="anchor" aria-label="anchor" href="#hierarchical-regression-analysis"></a>
+</h2>
+<p>Users can use <code><a href="https://rdrr.io/r/stats/anova.html" class="external-link">anova()</a></code> manually to do hierarchical
+regression. <code><a href="../reference/hierarchical_lm.html">hierarchical_lm()</a></code> is written with these
+features:</p>
+<ul>
+<li><p>Check whether the models are really “hierarchical”. If yes, order
+them automatically. Users do not need to put them in the correct order
+manually.</p></li>
+<li><p>Compute R-squared and R-squared change and add them to the
+output.</p></li>
+</ul>
+<p>Let’s fit three models for illustration:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://sfcheung.github.io/lmhelprs/">lmhelprs</a></span><span class="op">)</span></span></code></pre></div>
-  </main>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://sfcheung.github.io/lmhelprs/">lmhelprs</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">data_test1</span><span class="op">)</span></span>
+<span><span class="va">lm1a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">x1</span> <span class="op">+</span> <span class="va">x2</span>, <span class="va">data_test1</span><span class="op">)</span></span>
+<span><span class="va">lm1b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">x1</span> <span class="op">+</span> <span class="va">x2</span> <span class="op">+</span> <span class="va">x3</span> <span class="op">+</span> <span class="va">x4</span>, <span class="va">data_test1</span><span class="op">)</span></span>
+<span><span class="va">lm1c</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">x1</span> <span class="op">+</span> <span class="va">x2</span> <span class="op">+</span> <span class="va">x3</span> <span class="op">+</span> <span class="va">x4</span> <span class="op">+</span> <span class="va">cat2</span>, <span class="va">data_test1</span><span class="op">)</span></span></code></pre></div>
+<p>They are can be passed to <code><a href="../reference/hierarchical_lm.html">hierarchical_lm()</a></code> in any
+order. Hierarchical regression analysis will be conducted correctly,
+with R-squared and R-squared change:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/hierarchical_lm.html">hierarchical_lm</a></span><span class="op">(</span><span class="va">lm1b</span>, <span class="va">lm1a</span>, <span class="va">lm1c</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Analysis of Variance Table</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Model 1: y ~ x1 + x2</span></span>
+<span><span class="co">#&gt; Model 2: y ~ x1 + x2 + x3 + x4</span></span>
+<span><span class="co">#&gt; Model 3: y ~ x1 + x2 + x3 + x4 + cat2</span></span>
+<span><span class="co">#&gt;   adj.R.sq   R.sq R.sq.change Res.Df   RSS Df Sum of Sq      F Pr(&gt;F)    </span></span>
+<span><span class="co">#&gt; 1   0.5090 0.5189     0.00000     97 55.83                               </span></span>
+<span><span class="co">#&gt; 2   0.7269 0.7380     0.21906     95 30.41  2    25.419 39.314 &lt;0.001 ***</span></span>
+<span><span class="co">#&gt; 3   0.7242 0.7437     0.00573     92 29.74  3     0.665  0.686  0.563    </span></span>
+<span><span class="co">#&gt; ---</span></span>
+<span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span></code></pre></div>
+<p>If the models are not in hierarchical order, an error will be
+raised:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">lm2a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">x1</span> <span class="op">+</span> <span class="va">x2</span>, <span class="va">data_test1</span><span class="op">)</span></span>
+<span><span class="va">lm2b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">x1</span> <span class="op">+</span> <span class="va">x3</span> <span class="op">+</span> <span class="va">x4</span>, <span class="va">data_test1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/hierarchical_lm.html">hierarchical_lm</a></span><span class="op">(</span><span class="va">lm2a</span>, <span class="va">lm2b</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Error in hierarchical_lm(lm2a, lm2b): The models do not have hierarchical relations.</span></span></code></pre></div>
+<p>Please refer to the help page of <code><a href="../reference/hierarchical_lm.html">hierarchical_lm()</a></code> on
+how it works, and the print method of its output
+(<code><a href="../reference/print.hierarchical_lm.html">print.hierarchical_lm()</a></code>) on how to customize the
+printout.</p>
+</div>
+<div class="section level2">
+<h2 id="test-the-highest-order-term">Test The Highest Order Term<a class="anchor" aria-label="anchor" href="#test-the-highest-order-term"></a>
+</h2>
+<p>In a linear regression model with a term of second or higher order,
+the function <code><a href="../reference/test_highest.html">test_highest()</a></code> can be used to identify the
+highest order term, compare the model to a model with this term removed,
+and estimate and test the R-squared increase due to adding this
+term.</p>
+<p>For example:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">lm_mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">x1</span> <span class="op">+</span> <span class="va">cat2</span> <span class="op">+</span> <span class="va">cat1</span> <span class="op">+</span> <span class="va">cat2</span><span class="op">:</span><span class="va">cat1</span>, <span class="va">data_test1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">lm_mod</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Call:</span></span>
+<span><span class="co">#&gt; lm(formula = y ~ x1 + cat2 + cat1 + cat2:cat1, data = data_test1)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Residuals:</span></span>
+<span><span class="co">#&gt;      Min       1Q   Median       3Q      Max </span></span>
+<span><span class="co">#&gt; -1.54001 -0.63322 -0.02938  0.51963  1.45138 </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Coefficients:</span></span>
+<span><span class="co">#&gt;                      Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">#&gt; (Intercept)         -0.099251   0.265818  -0.373    0.710    </span></span>
+<span><span class="co">#&gt; x1                   0.655101   0.079709   8.219 1.78e-12 ***</span></span>
+<span><span class="co">#&gt; cat2North           -0.510542   0.366084  -1.395    0.167    </span></span>
+<span><span class="co">#&gt; cat2South           -0.062337   0.386181  -0.161    0.872    </span></span>
+<span><span class="co">#&gt; cat2West            -0.070097   0.443321  -0.158    0.875    </span></span>
+<span><span class="co">#&gt; cat1Beta             0.003442   0.386352   0.009    0.993    </span></span>
+<span><span class="co">#&gt; cat1Gamma            0.026172   0.341096   0.077    0.939    </span></span>
+<span><span class="co">#&gt; cat2North:cat1Beta  -0.011252   0.565646  -0.020    0.984    </span></span>
+<span><span class="co">#&gt; cat2South:cat1Beta  -0.475115   0.577723  -0.822    0.413    </span></span>
+<span><span class="co">#&gt; cat2West:cat1Beta    0.140028   0.577154   0.243    0.809    </span></span>
+<span><span class="co">#&gt; cat2North:cat1Gamma  0.136924   0.534636   0.256    0.798    </span></span>
+<span><span class="co">#&gt; cat2South:cat1Gamma  0.564488   0.497376   1.135    0.260    </span></span>
+<span><span class="co">#&gt; cat2West:cat1Gamma   0.246710   0.606676   0.407    0.685    </span></span>
+<span><span class="co">#&gt; ---</span></span>
+<span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Residual standard error: 0.7945 on 87 degrees of freedom</span></span>
+<span><span class="co">#&gt; Multiple R-squared:  0.5268, Adjusted R-squared:  0.4615 </span></span>
+<span><span class="co">#&gt; F-statistic:  8.07 on 12 and 87 DF,  p-value: 5.975e-10</span></span></code></pre></div>
+<p>Although it has six product terms, in terms of variables, it only has
+one higher order term: <code>cat2:cat1</code>, the interaction between
+<code>cat2</code> and <code>cat1</code>.</p>
+<p>To automatically find this term, and compare this model to a model
+without this interaction, <code><a href="../reference/test_highest.html">test_highest()</a></code> can be used:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/test_highest.html">test_highest</a></span><span class="op">(</span><span class="va">lm_mod</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Analysis of Variance Table</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Model 1: y ~ x1 + cat2 + cat1</span></span>
+<span><span class="co">#&gt; Model 2: y ~ x1 + cat2 + cat1 + cat2:cat1</span></span>
+<span><span class="co">#&gt;   adj.R.sq   R.sq R.sq.change Res.Df   RSS Df Sum of Sq     F Pr(&gt;F)</span></span>
+<span><span class="co">#&gt; 1   0.4682 0.5004     0.00000     93 57.97                          </span></span>
+<span><span class="co">#&gt; 2   0.4615 0.5268     0.02633     87 54.91  6     3.055 0.807  0.567</span></span></code></pre></div>
+<p>The R-squared change due to adding this interaction (represented by
+six product terms) to a model without interaction is 0.02633, and the
+<em>p</em>-value of this change is 0.567.</p>
+<p>The function <code><a href="../reference/test_highest.html">test_highest()</a></code> can be used for third and
+higher order term. For example:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">lm_mod3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">x1</span> <span class="op">+</span> <span class="va">x2</span> <span class="op">+</span> <span class="va">x3</span><span class="op">*</span><span class="va">x4</span><span class="op">*</span><span class="va">cat2</span>, <span class="va">data_test1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">lm_mod3</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Call:</span></span>
+<span><span class="co">#&gt; lm(formula = y ~ x1 + x2 + x3 * x4 * cat2, data = data_test1)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Residuals:</span></span>
+<span><span class="co">#&gt;      Min       1Q   Median       3Q      Max </span></span>
+<span><span class="co">#&gt; -1.19218 -0.37090 -0.03274  0.35201  1.16865 </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Coefficients:</span></span>
+<span><span class="co">#&gt;                  Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">#&gt; (Intercept)     -0.078753   0.110170  -0.715  0.47674    </span></span>
+<span><span class="co">#&gt; x1               0.434185   0.066903   6.490 6.14e-09 ***</span></span>
+<span><span class="co">#&gt; x2               0.263447   0.057819   4.556 1.79e-05 ***</span></span>
+<span><span class="co">#&gt; x3               0.536450   0.127818   4.197 6.82e-05 ***</span></span>
+<span><span class="co">#&gt; x4               0.393184   0.148079   2.655  0.00952 ** </span></span>
+<span><span class="co">#&gt; cat2North       -0.119296   0.178050  -0.670  0.50473    </span></span>
+<span><span class="co">#&gt; cat2South        0.180559   0.165472   1.091  0.27839    </span></span>
+<span><span class="co">#&gt; cat2West         0.105126   0.176470   0.596  0.55300    </span></span>
+<span><span class="co">#&gt; x3:x4            0.140337   0.223254   0.629  0.53136    </span></span>
+<span><span class="co">#&gt; x3:cat2North    -0.358721   0.190254  -1.885  0.06291 .  </span></span>
+<span><span class="co">#&gt; x3:cat2South    -0.177283   0.158573  -1.118  0.26684    </span></span>
+<span><span class="co">#&gt; x3:cat2West     -0.341833   0.256182  -1.334  0.18579    </span></span>
+<span><span class="co">#&gt; x4:cat2North     0.004772   0.186679   0.026  0.97967    </span></span>
+<span><span class="co">#&gt; x4:cat2South    -0.167742   0.200490  -0.837  0.40521    </span></span>
+<span><span class="co">#&gt; x4:cat2West      0.046933   0.248811   0.189  0.85085    </span></span>
+<span><span class="co">#&gt; x3:x4:cat2North -0.202793   0.245556  -0.826  0.41128    </span></span>
+<span><span class="co">#&gt; x3:x4:cat2South -0.264180   0.243922  -1.083  0.28196    </span></span>
+<span><span class="co">#&gt; x3:x4:cat2West  -0.274082   0.336493  -0.815  0.41770    </span></span>
+<span><span class="co">#&gt; ---</span></span>
+<span><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Residual standard error: 0.5771 on 82 degrees of freedom</span></span>
+<span><span class="co">#&gt; Multiple R-squared:  0.7646, Adjusted R-squared:  0.7159 </span></span>
+<span><span class="co">#&gt; F-statistic: 15.67 on 17 and 82 DF,  p-value: &lt; 2.2e-16</span></span>
+<span><span class="fu"><a href="../reference/test_highest.html">test_highest</a></span><span class="op">(</span><span class="va">lm_mod3</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Analysis of Variance Table</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Model 1: y ~ x1 + x2 + x3 + x4 + cat2 + x3:x4 + x3:cat2 + x4:cat2</span></span>
+<span><span class="co">#&gt; Model 2: y ~ x1 + x2 + x3 * x4 * cat2</span></span>
+<span><span class="co">#&gt;   adj.R.sq   R.sq R.sq.change Res.Df   RSS Df Sum of Sq     F Pr(&gt;F)</span></span>
+<span><span class="co">#&gt; 1   0.7217 0.7611    0.000000     85 27.72                          </span></span>
+<span><span class="co">#&gt; 2   0.7159 0.7646    0.003568     82 27.31  3     0.414 0.414  0.743</span></span></code></pre></div>
+<p>The model with three-way interaction is compared to a model with only
+two-way interactions (<code>x3:x4</code>, <code>x3:cat2</code>, and
+<code>x4:cat2</code>).</p>
+<p>If a model has more than one term of the highest order, an error will
+be raised:</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">lm_mod2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">x1</span> <span class="op">+</span> <span class="va">x2</span><span class="op">*</span><span class="va">x3</span> <span class="op">+</span> <span class="va">x2</span><span class="op">*</span><span class="va">x4</span>, <span class="va">data_test1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/test_highest.html">test_highest</a></span><span class="op">(</span><span class="va">lm_mod2</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Error in highest_order(lm_out): No unique highest order term.</span></span></code></pre></div>
+<p>Please refer to the help page of <code><a href="../reference/test_highest.html">test_highest()</a></code> on how
+it works,</p>
+</div>
+<div class="section level2">
+<h2 id="issues">Issues<a class="anchor" aria-label="anchor" href="#issues"></a>
+</h2>
+<p>If you have any suggestions and found any bugs, please feel feel to
+open a GitHub issue. Thanks.</p>
+</div>
+  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
