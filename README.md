@@ -59,8 +59,8 @@ Therefore, I named it `lmhelprs`.
   https://doi.org/10.3758/s13428-023-02224-z
 
 - Cheung, S. F., Cheung, S.-H., Lau, E.
-  Y. Y., Hui, C. H., & Vong, W. N.
-  (2022) Improving an old way to measure
+  Y. Y., Hui, C. H., & Vong, W. N. (2022)
+  Improving an old way to measure
   moderation effect in standardized
   units. *Health Psychology, 41*(7),
   502-505.
