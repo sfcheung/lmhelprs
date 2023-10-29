@@ -1,6 +1,6 @@
 Package: lmhelprs
 Title: Helper Functions for Linear Model Analysis
-Version: 0.0.0.9003
+Version: 0.0.0.9004
 Authors@R:
     c(person(given = "Shu Fai",
              family = "Cheung",
@@ -30,3 +30,5 @@ VignetteBuilder: knitr
 Depends:
     R (>= 2.10)
 LazyData: true
+Imports:
+    stats
