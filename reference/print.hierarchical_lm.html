@@ -12,7 +12,7 @@ a 'hierarchical_lm`-class object."><!-- mathjax --><script src="https://cdnjs.cl
     
     <a class="navbar-brand me-2" href="../index.html">lmhelprs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9005</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0.9007</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -144,10 +144,10 @@ presented in scientific notation.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Model 1: y ~ x1 + x2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Model 2: y ~ x1 + x2 + x3 + x4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Model 3: y ~ x1 + cat1 + cat2 + x2 + x3 + x4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   adj.R.sq    R.sq R.sq.change Res.Df    RSS Df Sum of Sq       F    Pr(&gt;F)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  0.50897 0.51889    0.000000     97 55.826                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  0.72692 0.73795    0.219059     95 30.407  2    25.419 39.7169 4.324e-13 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  0.72698 0.75180    0.013849     90 28.800  5     1.607  1.0044    0.4199    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   adj.R.sq   R.sq R.sq.change Res.Df   RSS Df Sum of Sq      F Pr(&gt;F)    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   0.5090 0.5189     0.00000     97 55.83                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   0.7269 0.7380     0.21906     95 30.41  2    25.419 39.717 &lt;0.001 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3   0.7270 0.7518     0.01385     90 28.80  5     1.607  1.004   0.42    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
 <span class="r-in"><span><span class="fu"><a href="hierarchical_lm.html">hierarchical_lm</a></span><span class="op">(</span><span class="va">lm1</span>, <span class="va">lm2</span>, <span class="va">lm4</span><span class="op">)</span></span></span>
@@ -156,10 +156,10 @@ presented in scientific notation.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Model 1: y ~ x1 + x2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Model 2: y ~ x1 + x2 + x3 + x4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Model 3: y ~ x1 + x2 * x3 + x4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   adj.R.sq    R.sq R.sq.change Res.Df    RSS Df Sum of Sq       F    Pr(&gt;F)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  0.50897 0.51889    0.000000     97 55.826                                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  0.72692 0.73795    0.219059     95 30.407  2   25.4190 39.3205 3.902e-13 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  0.72423 0.73816    0.000204     94 30.383  1    0.0237  0.0733    0.7872    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   adj.R.sq   R.sq R.sq.change Res.Df   RSS Df Sum of Sq      F Pr(&gt;F)    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   0.5090 0.5189      0.0000     97 55.83                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   0.7269 0.7380      0.2191     95 30.41  2    25.419 39.320 &lt;0.001 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3   0.7242 0.7382      0.0002     94 30.38  1     0.024  0.073  0.787    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
 <span class="r-in"><span></span></span>
