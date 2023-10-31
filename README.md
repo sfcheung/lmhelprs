@@ -24,9 +24,11 @@ https://sfcheung.github.io/lmhelprs/
 
 # Installation
 
-Stable release versions of this package can be downloaded below:
+The stable CRAN version can be installed by `install.packages()`:
 
-https://github.com/sfcheung/lmhelprs/releases
+```r
+install.packages("lmhelprs")
+```
 
 The latest developmental version of this package can be installed by `remotes::install_github`:
 
