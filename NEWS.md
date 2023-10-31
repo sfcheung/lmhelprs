@@ -1,3 +1,8 @@
+# lmhelprs 0.2.0.1
+
+- Updated README.md for CRAN release. Identical
+  to the CRAN release in code. (0.2.0.1)
+
 # lmhelprs 0.2.0
 
 - Added `data_test1`, a test dataset. (0.0.0.9002)
