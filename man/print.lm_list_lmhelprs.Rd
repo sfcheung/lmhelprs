@@ -24,7 +24,7 @@ output of \code{\link[=many_lm]{many_lm()}}.
 \details{
 Adapted from the package \code{manymome}
 such that \code{many_lm()} can be used
-with or without \code{manymome}.
+with \code{manymome}.
 }
 \examples{
 

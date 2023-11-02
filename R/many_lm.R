@@ -19,10 +19,7 @@
 #'
 #' @return
 #' A list of the output of `lm()`. The
-#' class is `lm_list`. If the `manymome`
-#' is installed, the print method and
-#' summary method for `lm_list` from the
-#' package can be used.
+#' class is `lm_list_lmhelprs`.
 #'
 #' @param models Character. Model syntax.
 #' See Details.
@@ -58,16 +55,6 @@
 #' out <- many_lm(mod, data_test1)
 #' summary(out)
 #'
-#' if (requireNamespace("manymome", quietly = TRUE)) {
-#'
-#' library(manymome)
-#' ind <- indirect_effect(x = "x1", m = "x3", y = "x4", fit = out)
-#' ind
-#'
-#' cond <- cond_indirect_effects(x = "x1", wlevels = "x4", y = "x5", fit = out)
-#' cond
-#'
-#' }
 #'
 #'
 #'

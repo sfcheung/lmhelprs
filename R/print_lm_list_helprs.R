@@ -7,7 +7,7 @@
 #' @details
 #' Adapted from the package `manymome`
 #' such that `many_lm()` can be used
-#' with or without `manymome`.
+#' with `manymome`.
 #'
 #' @return `x` is returned invisibly.
 #' Called for its side effect.

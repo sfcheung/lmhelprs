@@ -1,8 +1,8 @@
-# lmhelprs 0.2.0.2
+# lmhelprs 0.2.0.3
 
 - Updated README.md for CRAN release. Identical
   to the CRAN release in code. (0.2.0.1)
-- Added `many_lm()`. (0.2.0.2)
+- Added `many_lm()`. (0.2.0.2, 0.2.0.3)
 
 # lmhelprs 0.2.0
 

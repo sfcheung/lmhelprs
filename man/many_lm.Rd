@@ -31,10 +31,7 @@ be passed to \code{lm()}.}
 }
 \value{
 A list of the output of \code{lm()}. The
-class is \code{lm_list}. If the \code{manymome}
-is installed, the print method and
-summary method for \code{lm_list} from the
-package can be used.
+class is \code{lm_list_lmhelprs}.
 }
 \description{
 Fit a list of linear
@@ -63,16 +60,6 @@ mod <- "x3 ~ x2 + x1
 out <- many_lm(mod, data_test1)
 summary(out)
 
-if (requireNamespace("manymome", quietly = TRUE)) {
-
-library(manymome)
-ind <- indirect_effect(x = "x1", m = "x3", y = "x4", fit = out)
-ind
-
-cond <- cond_indirect_effects(x = "x1", wlevels = "x4", y = "x5", fit = out)
-cond
-
-}
 
 
 

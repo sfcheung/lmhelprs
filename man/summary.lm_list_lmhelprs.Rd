@@ -36,7 +36,7 @@ effect.
 
 Adapted from the package \code{manymome}
 such that \code{many_lm()} can be used
-with or without \code{manymome}.
+without \code{manymome}.
 }
 \description{
 The summary of content

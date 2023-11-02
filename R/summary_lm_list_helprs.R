@@ -15,7 +15,7 @@
 #'
 #' Adapted from the package `manymome`
 #' such that `many_lm()` can be used
-#' with or without `manymome`.
+#' without `manymome`.
 #'
 #' @param object The output of
 #' [many_lm()].
