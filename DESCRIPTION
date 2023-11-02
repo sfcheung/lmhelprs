@@ -25,7 +25,9 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Suggests:
     knitr,
-    rmarkdown, tinytest
+    rmarkdown,
+    tinytest,
+    manymome
 VignetteBuilder: knitr
 Depends:
     R (>= 2.10)
