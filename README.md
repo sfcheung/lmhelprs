@@ -8,7 +8,7 @@
 [![R-CMD-check](https://github.com/sfcheung/lmhelprs/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/sfcheung/lmhelprs/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-(Version 0.2.0.3, updated on 2023-11-02, [release history](https://sfcheung.github.io/lmhelprs/news/index.html))
+(Version 0.2.0.4, updated on 2024-02-10, [release history](https://sfcheung.github.io/lmhelprs/news/index.html))
 
 # lmhelprs: A collection of helper functions for some common tasks in fitting linear models, mainly by `lm()`.
 
