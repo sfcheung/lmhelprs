@@ -1,6 +1,6 @@
 Package: lmhelprs
 Title: Helper Functions for Linear Model Analysis
-Version: 0.2.0.1
+Version: 0.2.0.5
 Authors@R:
     c(person(given = "Shu Fai",
              family = "Cheung",
@@ -25,7 +25,8 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Suggests:
     knitr,
-    rmarkdown, tinytest
+    rmarkdown,
+    tinytest
 VignetteBuilder: knitr
 Depends:
     R (>= 2.10)

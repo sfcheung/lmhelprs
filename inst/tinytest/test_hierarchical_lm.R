@@ -47,3 +47,8 @@ expect_equal(length(which(grepl("Chi)", tmp_print))), 1)
 
 expect_error(hierarchical_lm(lm5b, lm5d))
 expect_error(hierarchical_lm(lm1a, lm11a))
+
+
+
+
+
