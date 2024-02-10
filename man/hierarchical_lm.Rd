@@ -46,6 +46,30 @@ functions if their outputs have
 \code{\link[stats:anova]{stats::anova()}} and \code{\link[=summary]{summary()}}
 methods.
 }
+
+\subsection{Check Datasets Used}{
+
+The comparison is meaningful only
+if all models are fitted to the
+same datasets. There is not way
+to guarantee this is the case, given
+only the output of \code{\link[=lm]{lm()}}. However,
+there are necessary conditions to
+claim that the same datasets are used:
+the number of cases are the same,
+the means, variances, and covariances
+of numerical variables, and the
+frequency distributions of variables
+common to two models are identical.
+If at least one of these conditions
+is not met, then two models must have
+been fitted to two different datasets.
+
+The function will check these
+conditions and raise an error if
+any of these necessary conditions
+are not met.
+}
 }
 \description{
 Do hierarchical

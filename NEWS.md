@@ -1,8 +1,12 @@
-# lmhelprs 0.2.0.3
+# lmhelprs 0.2.0.4
 
 - Updated README.md for CRAN release. Identical
   to the CRAN release in code. (0.2.0.1)
 - Added `many_lm()`. (0.2.0.2, 0.2.0.3)
+- Added internal checks to `hierarchical_lm()`
+  to check whether any two models are
+  not fitted to an identical dataset.
+  (0.2.0.4)
 
 # lmhelprs 0.2.0
 

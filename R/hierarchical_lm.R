@@ -50,6 +50,29 @@
 #' [stats::anova()] and [summary()]
 #' methods.
 #'
+#' ## Check Datasets Used
+#'
+#' The comparison is meaningful only
+#' if all models are fitted to the
+#' same datasets. There is not way
+#' to guarantee this is the case, given
+#' only the output of [lm()]. However,
+#' there are necessary conditions to
+#' claim that the same datasets are used:
+#' the number of cases are the same,
+#' the means, variances, and covariances
+#' of numerical variables, and the
+#' frequency distributions of variables
+#' common to two models are identical.
+#' If at least one of these conditions
+#' is not met, then two models must have
+#' been fitted to two different datasets.
+#'
+#' The function will check these
+#' conditions and raise an error if
+#' any of these necessary conditions
+#' are not met.
+#'
 #' @param ... The outputs of `lm()`,
 #' that is, one or more `lm`-class
 #' objects. The outputs of other model
@@ -82,6 +105,18 @@ hierarchical_lm <- function(...) {
     check_y <- do.call(same_response, lm_outs)
     if (!check_y) {
         stop("The models do not have the same outcome variable.")
+      }
+    tmp <- same_lm_n(...)
+    if (!isTRUE(tmp)) {
+        stop(tmp)
+      }
+    tmp <- same_lm_means(...)
+    if (!isTRUE(tmp)) {
+        stop(tmp)
+      }
+    tmp <- same_lm_cov(...)
+    if (!isTRUE(tmp)) {
+        stop(tmp)
       }
     lm_sorted <- do.call(hierarchical, lm_outs)
     if (isTRUE(is.na(lm_sorted))) {
