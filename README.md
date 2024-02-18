@@ -10,7 +10,7 @@
 
 # lmhelprs: A collection of helper functions for some common tasks in fitting linear models, mainly by `lm()` <img src="man/figures/logo.png" align="right" />
 
-(Version 0.2.0.5, updated on 2024-02-10, [release history](https://sfcheung.github.io/lmhelprs/news/index.html))
+(Version 0.3.0, updated on 2024-02-18, [release history](https://sfcheung.github.io/lmhelprs/news/index.html))
 
 A collection of helper functions for
 multiple regression models fitted by `lm()`.

@@ -1,4 +1,4 @@
-# lmhelprs 0.2.0.5
+# lmhelprs 0.3.0
 
 ## New Features
 
@@ -10,8 +10,6 @@
 
 ## Miscellaneous
 
-- Updated README.md for CRAN release. Identical
-  to the CRAN release in code. (0.2.0.1)
 - Added a logo. (0.2.0.5)
 
 # lmhelprs 0.2.0
