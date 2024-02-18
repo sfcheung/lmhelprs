@@ -1,6 +1,6 @@
 Package: lmhelprs
 Title: Helper Functions for Linear Model Analysis
-Version: 0.2.0.5
+Version: 0.3.0
 Authors@R:
     c(person(given = "Shu Fai",
              family = "Cheung",
@@ -22,7 +22,7 @@ BugReports: https://github.com/sfcheung/lmhelprs/issues
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.0
 Suggests:
     knitr,
     rmarkdown,
