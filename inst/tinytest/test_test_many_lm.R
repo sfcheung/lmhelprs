@@ -47,6 +47,7 @@ lm2m <- lm(y ~ x2 + x1 + x3 + x4, datm)
 lm3m <- lm(x3 ~ cat1 + x1 + x2*x4, datm)
 outm1 <- many_lm(mod1, datm)
 outm2 <- many_lm(mod1, datm, na_omit_all = FALSE)
+outm3 <- many_lm(mod1, datm, subset = cat1 != "Alpha")
 
 n1 <- sapply(outm1, function(x) nrow(model.frame(x)))
 n2 <- sapply(outm2, function(x) nrow(model.frame(x)))

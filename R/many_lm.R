@@ -67,6 +67,9 @@ many_lm <- function(models,
     my_call <- match.call()
     my_call$na_omit_all <- NULL
     my_call[[1L]] <- quote(stats::lm)
+    my_mm <- my_call
+    my_mm[[1L]] <- quote(stats::model.frame)
+    my_mm$models <- NULL
     if (is.null(my_call$data) && na_omit_all) {
         stop("The argument 'data' must be set if na_omit_all is TRUE.")
       }
@@ -78,8 +81,32 @@ many_lm <- function(models,
                               },
                           USE.NAMES = FALSE)
         all_vars <- unique(unlist(all_vars))
+        all_ys <- sapply(models1,
+                            function(x) {
+                                all.vars(stats::as.formula(x))[1]
+                              },
+                          USE.NAMES = FALSE)
+        ys1 <- all_ys[1]
+        f0 <- paste(ys1, "~", paste(setdiff(all_vars, ys1), collapse = " + "))
+        my_mm0 <- my_mm
+        my_mm0$formula <- f0
+        my_mm0$na.action <- "na.pass"
+        data_selected <- eval(my_mm0,
+                              envir = parent.frame())
+        data_full <- eval(my_call$data,
+                          envir = parent.frame())
+        if (!is.null(my_call$subset)) {
+            subset_i <- eval(my_call$subset,
+                             envir = eval(my_call$data,
+                                          envir = parent.frame()))
+            subset_i[is.na(subset_i)] <- FALSE
+          } else {
+            subset_i <- logical(nrow(data_full))
+            subset_i[] <- TRUE
+          }
         data <- stats::na.omit(eval(my_call$data,
                                     envir = parent.frame())[, all_vars])
+                                    browser()
         my_call$data <- data
       }
     tmpfct <- function(x, env = parent.frame()) {
