@@ -24,7 +24,8 @@ at least one of the models will be
 retained (i.e., listwise deletion).
 If \code{FALSE}, then missing data will be
 handled in each model separately by
-\code{lm()}.}
+\code{lm()}. Is \code{subset} is specified,
+then}
 
 \item{...}{Additional arguments. To
 be passed to \code{lm()}.}
@@ -50,6 +51,29 @@ and ignored.
 
 Each line must be a valid formula
 for \code{lm()}.
+\subsection{Listwise deletion}{
+
+If \code{na_omit_all} is \code{TRUE}, the
+default, then cases with missing
+data on at least one of the variables
+used in the model will be removed.
+Each call to \code{\link[=lm]{lm()}} will have \code{subset}
+set to an integer vector of cases
+\emph{not} removed (i.e., cases retained)
+}
+
+\subsection{Handling the \code{subset} argument}{
+
+If \code{subset} is used when calling this
+function, it will also be used to
+select cases.
+
+Note that the \code{subset} argument in
+the call in each model will be replaced
+by a numeric vector of cases retained,
+determined by both missing data and
+the original value of the \code{subset}.
+}
 }
 \examples{
 

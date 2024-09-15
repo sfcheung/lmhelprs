@@ -46,6 +46,8 @@
 summary.lm_list_lmhelprs <- function(object, ...) {
     out <- lapply(object, summary)
     class(out) <- c("summary_lm_list_lmhelprs", "summary_lm_list", class(out))
+    attr(out, "cases_removed") <- attr(object, "cases_removed")
+    attr(out, "call") <- attr(object, "call")
     out
   }
 
@@ -56,8 +58,11 @@ summary.lm_list_lmhelprs <- function(object, ...) {
 #' @export
 
 print.summary_lm_list_lmhelprs <- function(x, digits = 3, ...) {
+    x_call <- attr(x, "call")
+    cat("Call:\n")
+    print(x_call)
     for (xi in x) {
-        cat("\n\nModel:\n")
+        cat("\nModel:\n")
         print(xi$call$formula)
         stats::printCoefmat(xi$coefficients, digits = digits, ...)
         rsq0 <- formatC(xi$r.squared, digits = digits, format = "f")
@@ -77,7 +82,17 @@ print.summary_lm_list_lmhelprs <- function(x, digits = 3, ...) {
                       ". Adjusted R-square = ", adjrsq0,
                       ". ", fstr)
         cat(tmp)
+        cat("\n")
       }
-    cat("\n")
+    cases_removed <- attr(x, "cases_removed")
+    if (!is.null(cases_removed)) {
+        n_removed <- length(cases_removed)
+        if (n_removed > 0) {
+            cat("\n")
+            cat(n_removed, "cases removed (row numbers): \n")
+            cat(strwrap(paste(cases_removed, collapse = ", ")),
+                sep = "\n")
+          }
+      }
     invisible(x)
   }
