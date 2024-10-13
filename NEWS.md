@@ -1,12 +1,21 @@
-# lmhelprs 0.3.0.1
+# lmhelprs 0.3.0.2
 
 ## New Features
 
 - `many_lm()` should now properly
   support `subset`. (0.3.0.1)
+
 - The `print`-method of the `summary()`
   of `many_lm()` output now prints
   the cases removed, if any. (0.3.0.1)
+
+- Added `lm_list_to_partable()` to
+  converted a list of `lm()` outputs
+  to a data frame similar to the output
+  of `lavaan::parameterTable()`, that
+  can be used in `semPlot::semPaths()`
+  to draw the path model fitted by
+  several regression models. (0.3.0.2)
 
 # lmhelprs 0.3.0
 
