@@ -59,8 +59,7 @@
 #' retained (i.e., listwise deletion).
 #' If `FALSE`, then missing data will be
 #' handled in each model separately by
-#' `lm()`. Is `subset` is specified,
-#' then
+#' `lm()`.
 #'
 #' @param ... Additional arguments. To
 #' be passed to `lm()`.
