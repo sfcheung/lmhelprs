@@ -1,4 +1,4 @@
-# lmhelprs 0.3.0.4
+# lmhelprs 0.4.0
 
 ## New Features
 
