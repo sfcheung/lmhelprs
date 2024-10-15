@@ -1,6 +1,6 @@
 Package: lmhelprs
 Title: Helper Functions for Linear Model Analysis
-Version: 0.3.0.2
+Version: 0.3.0.3
 Authors@R:
     c(person(given = "Shu Fai",
              family = "Cheung",
