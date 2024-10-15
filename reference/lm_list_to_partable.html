@@ -11,7 +11,7 @@ parameter table."><meta property="og:image" content="https://sfcheung.github.io/
 
     <a class="navbar-brand me-2" href="../index.html">lmhelprs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -123,6 +123,21 @@ output of <a href="https://rdrr.io/pkg/lavaan/man/parTable.html" class="external
 <code><a href="https://rdrr.io/pkg/semPlot/man/semPaths.html" class="external-link">semPlot::semPaths()</a></code> and so contains
 only information necessary for the
 plot.</p>
+<p>The output of <code><a href="https://rdrr.io/r/stats/lm.html" class="external-link">stats::lm()</a></code> is
+already supported by
+<code><a href="https://rdrr.io/pkg/semPlot/man/semPaths.html" class="external-link">semPlot::semPaths()</a></code>, and it can
+also combine a list of regression
+models into on single plot. However,
+it will convert interaction terms to
+knots. Moreover, if two interaction
+terms in two different models share
+the a variable, it will be incorrectly
+combined to become a single knot
+(Version 1.1.6). Therefore, this
+function was developed to let users
+to draw the model as if it were a
+path model in structural equation
+modeling.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
@@ -181,8 +196,52 @@ plot.</p>
 <span class="r-in"><span>                exoCov <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
 <span class="r-in"><span>                DoNotPlot <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># If it is desired to use knots to</span></span></span>
+<span class="r-in"><span>  <span class="co"># denote interaction terms, then,</span></span></span>
+<span class="r-in"><span>  <span class="co"># the output of many_lm() can be used</span></span></span>
+<span class="r-in"><span>  <span class="co"># directly.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">m2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x1"</span>, <span class="cn">NA</span>, <span class="st">"x2"</span>, <span class="cn">NA</span>, <span class="st">"x3"</span>, <span class="cn">NA</span>, <span class="st">"x4"</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="cn">NA</span>, <span class="st">"x5"</span>, <span class="cn">NA</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>            nrow <span class="op">=</span> <span class="fl">3</span>, ncol <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/semPlot/man/semPaths.html" class="external-link">semPaths</a></span><span class="op">(</span><span class="va">out</span>,</span></span>
+<span class="r-in"><span>                 what <span class="op">=</span> <span class="st">"paths"</span>,</span></span>
+<span class="r-in"><span>                 whatLabels <span class="op">=</span> <span class="st">"est"</span>,</span></span>
+<span class="r-in"><span>                 nCharNodes <span class="op">=</span> <span class="fl">0</span>,</span></span>
+<span class="r-in"><span>                 style <span class="op">=</span> <span class="st">"ram"</span>,</span></span>
+<span class="r-in"><span>                 layout <span class="op">=</span> <span class="va">m2</span>,</span></span>
+<span class="r-in"><span>                 exoCov <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span>                 intercepts <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span>                 DoNotPlot <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">p2</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># This illustrates the problem with using</span></span></span>
+<span class="r-in"><span>  <span class="co"># the list of lm-outputs directly when</span></span></span>
+<span class="r-in"><span>  <span class="co"># a variable is involved in the interaction terms</span></span></span>
+<span class="r-in"><span>  <span class="co"># of two or more models.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">m3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x2"</span>,   <span class="cn">NA</span>, <span class="st">"x1"</span>,   <span class="cn">NA</span>, <span class="st">"x3"</span>,</span></span>
+<span class="r-in"><span>                   <span class="cn">NA</span>,   <span class="cn">NA</span>,   <span class="cn">NA</span>,   <span class="cn">NA</span>,   <span class="cn">NA</span>,</span></span>
+<span class="r-in"><span>                   <span class="cn">NA</span>, <span class="st">"x4"</span>,   <span class="cn">NA</span>, <span class="st">"x5"</span>,   <span class="cn">NA</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>            nrow <span class="op">=</span> <span class="fl">5</span>, ncol <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">mod3</span> <span class="op">&lt;-</span> <span class="st">"x4 ~ x2*x1</span></span></span>
+<span class="r-in"><span><span class="st">           x5 ~ x3*x1"</span></span></span>
+<span class="r-in"><span>  <span class="va">out3</span> <span class="op">&lt;-</span> <span class="fu"><a href="many_lm.html">many_lm</a></span><span class="op">(</span><span class="va">mod3</span>, <span class="va">data_test1</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">p3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/semPlot/man/semPaths.html" class="external-link">semPaths</a></span><span class="op">(</span><span class="va">out3</span>,</span></span>
+<span class="r-in"><span>                 what <span class="op">=</span> <span class="st">"paths"</span>,</span></span>
+<span class="r-in"><span>                 whatLabels <span class="op">=</span> <span class="st">"est"</span>,</span></span>
+<span class="r-in"><span>                 nCharNodes <span class="op">=</span> <span class="fl">0</span>,</span></span>
+<span class="r-in"><span>                 style <span class="op">=</span> <span class="st">"ram"</span>,</span></span>
+<span class="r-in"><span>                 layout <span class="op">=</span> <span class="va">m3</span>,</span></span>
+<span class="r-in"><span>                 exoCov <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span>                 intercepts <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span>                 DoNotPlot <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">p3</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-plt img"><img src="lm_list_to_partable-1.png" alt="" width="576" height="384"></span>
+<span class="r-plt img"><img src="lm_list_to_partable-2.png" alt="" width="576" height="384"></span>
+<span class="r-plt img"><img src="lm_list_to_partable-3.png" alt="" width="576" height="384"></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
