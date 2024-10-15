@@ -24,8 +24,7 @@ at least one of the models will be
 retained (i.e., listwise deletion).
 If \code{FALSE}, then missing data will be
 handled in each model separately by
-\code{lm()}. Is \code{subset} is specified,
-then}
+\code{lm()}.}
 
 \item{...}{Additional arguments. To
 be passed to \code{lm()}.}
