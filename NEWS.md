@@ -1,4 +1,4 @@
-# lmhelprs 0.3.0.2
+# lmhelprs 0.3.0.3
 
 ## New Features
 
@@ -16,6 +16,12 @@
   can be used in `semPlot::semPaths()`
   to draw the path model fitted by
   several regression models. (0.3.0.2)
+
+## Bug Fixes
+
+- Fix a error in `hierarchical_lm()`
+  for a model with only one predictor.
+  (0.3.0.3)
 
 # lmhelprs 0.3.0
 

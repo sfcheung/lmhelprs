@@ -66,10 +66,10 @@ same_lm_means_i <- function(a, b) {
     mm_b <- stats::model.frame(b)
     vars <- intersect(colnames(mm_a),
                       colnames(mm_b))
-    vars_numeric <- vars[sapply(mm_a[, vars], is.numeric)]
+    vars_numeric <- vars[sapply(mm_a[, vars, drop = FALSE], is.numeric)]
     if (length(vars_numeric) > 0) {
-        means_a <- colMeans(mm_a[, vars_numeric])
-        means_b <- colMeans(mm_b[, vars_numeric])
+        means_a <- colMeans(mm_a[, vars_numeric, drop = FALSE])
+        means_b <- colMeans(mm_b[, vars_numeric, drop = FALSE])
         if (!isTRUE(all.equal(means_a, means_b))) {
             call1 <- deparse(stats::getCall(a))
             call2 <- deparse(stats::getCall(b))
@@ -82,19 +82,19 @@ same_lm_means_i <- function(a, b) {
             return(out)
         }
       }
-    vars_cat1 <- colnames(mm_a)[sapply(mm_a[, vars], is.character)]
+    vars_cat1 <- colnames(mm_a)[sapply(mm_a[, vars, drop = FALSE], is.character)]
     for (xx in vars_cat1) {
-        mm_a[, xx] <- as.factor(mm_a[, xx])
+        mm_a[, xx] <- as.factor(mm_a[, xx, drop = TRUE])
       }
     vars_cat1 <- colnames(mm_b)[sapply(mm_b, is.character)]
     for (xx in vars_cat1) {
-        mm_b[, xx] <- as.factor(mm_b[, xx])
+        mm_b[, xx] <- as.factor(mm_b[, xx, drop = TRUE])
       }
     vars_cat2 <- vars[sapply(mm_a, is.factor)]
     if (length(vars_cat2) > 0) {
         for (xx in vars_cat2) {
-            freq_a <- table(mm_a[, xx])
-            freq_b <- table(mm_b[, xx])
+            freq_a <- table(mm_a[, xx, drop = TRUE])
+            freq_b <- table(mm_b[, xx, drop = TRUE])
             if (!identical(freq_a, freq_b)) {
                 call1 <- deparse(stats::getCall(a))
                 call2 <- deparse(stats::getCall(b))
@@ -142,8 +142,8 @@ same_lm_cov_i <- function(a, b) {
                       colnames(mm_b))
     vars_numeric <- vars[sapply(mm_a[, vars], is.numeric)]
     if (length(vars_numeric) > 0) {
-        cov_a <- stats::cov(mm_a[, vars_numeric])
-        cov_b <- stats::cov(mm_b[, vars_numeric])
+        cov_a <- stats::cov(mm_a[, vars_numeric, drop = FALSE])
+        cov_b <- stats::cov(mm_b[, vars_numeric, drop = FALSE])
         if (!isTRUE(all.equal(cov_a, cov_b))) {
             call1 <- deparse(stats::getCall(a))
             call2 <- deparse(stats::getCall(b))
