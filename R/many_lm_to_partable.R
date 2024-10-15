@@ -16,6 +16,22 @@
 #' only information necessary for the
 #' plot.
 #'
+#' The output of [stats::lm()] is
+#' already supported by
+#' [semPlot::semPaths()], and it can
+#' also combine a list of regression
+#' models into on single plot. However,
+#' it will convert interaction terms to
+#' knots. Moreover, if two interaction
+#' terms in two different models share
+#' the a variable, it will be incorrectly
+#' combined to become a single knot
+#' (Version 1.1.6). Therefore, this
+#' function was developed to let users
+#' to draw the model as if it were a
+#' path model in structural equation
+#' modeling.
+#'
 #' @return
 #' A data frame object with columns such
 #' as `lhs`, `op`, `rhs`, and `est`,
@@ -89,6 +105,48 @@
 #'                 exoCov = FALSE,
 #'                 DoNotPlot = TRUE)
 #'   plot(p)
+#'
+#'   # If it is desired to use knots to
+#'   # denote interaction terms, then,
+#'   # the output of many_lm() can be used
+#'   # directly.
+#'
+#'   m2 <- matrix(c("x1", NA, "x2", NA, "x3", NA, "x4", NA, NA, NA, "x5", NA),
+#'             nrow = 3, ncol = 4)
+#'   p2 <- semPaths(out,
+#'                  what = "paths",
+#'                  whatLabels = "est",
+#'                  nCharNodes = 0,
+#'                  style = "ram",
+#'                  layout = m2,
+#'                  exoCov = FALSE,
+#'                  intercepts = FALSE,
+#'                  DoNotPlot = TRUE)
+#'   plot(p2)
+#'
+#'   # This illustrates the problem with using
+#'   # the list of lm-outputs directly when
+#'   # a variable is involved in the interaction terms
+#'   # of two or more models.
+#'
+#'   m3 <- matrix(c("x2",   NA, "x1",   NA, "x3",
+#'                    NA,   NA,   NA,   NA,   NA,
+#'                    NA, "x4",   NA, "x5",   NA),
+#'             nrow = 5, ncol = 3)
+#'   mod3 <- "x4 ~ x2*x1
+#'            x5 ~ x3*x1"
+#'   out3 <- many_lm(mod3, data_test1)
+#'   p3 <- semPaths(out3,
+#'                  what = "paths",
+#'                  whatLabels = "est",
+#'                  nCharNodes = 0,
+#'                  style = "ram",
+#'                  layout = m3,
+#'                  exoCov = FALSE,
+#'                  intercepts = FALSE,
+#'                  DoNotPlot = TRUE)
+#'   plot(p3)
+#'
 #' }
 #'
 #' @export
