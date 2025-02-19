@@ -9,7 +9,10 @@ lm_list_to_partable(
   keep_intercepts = FALSE,
   vcov_args = list(),
   pvalue_fun = NULL,
-  rsquare = FALSE
+  rsquare = FALSE,
+  ci = FALSE,
+  ci_fun = stats::confint,
+  ci_args = list(level = 0.95)
 )
 }
 \arguments{
@@ -42,10 +45,24 @@ in the future.}
 R-squares will be included in the
 output, with \code{r2} as the operator
 in the column \code{op}. Default is
-\code{FALSE}. Not be included by default
+\code{FALSE}. Not included by default
 because \code{\link[semPlot:semPaths]{semPlot::semPaths()}} will
 draw the R-squares over the residual
 variances.}
+
+\item{ci}{Logical. If \code{TRUE},
+confidence intervals will be added,
+computed by \code{\link[stats:confint]{stats::confint()}}.}
+
+\item{ci_fun}{The function to be used
+to form the confidence intervals for
+regression coefficients. Default
+is \code{stats::confint}}
+
+\item{ci_args}{A named list of
+arguments to be passed to \code{ci_fun}.
+Default is \code{list(level = .95)},
+requesting 95\% confidence intervals.}
 }
 \value{
 A data frame object with columns such

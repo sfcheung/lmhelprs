@@ -69,10 +69,24 @@
 #' R-squares will be included in the
 #' output, with `r2` as the operator
 #' in the column `op`. Default is
-#' `FALSE`. Not be included by default
+#' `FALSE`. Not included by default
 #' because [semPlot::semPaths()] will
 #' draw the R-squares over the residual
 #' variances.
+#'
+#' @param ci Logical. If `TRUE`,
+#' confidence intervals will be added,
+#' computed by [stats::confint()].
+#'
+#' @param ci_fun The function to be used
+#' to form the confidence intervals for
+#' regression coefficients. Default
+#' is `stats::confint`
+#'
+#' @param ci_args A named list of
+#' arguments to be passed to `ci_fun`.
+#' Default is `list(level = .95)`,
+#' requesting 95% confidence intervals.
 #'
 #' @author Shu Fai Cheung <https://orcid.org/0000-0002-9871-9448>
 #'
@@ -155,12 +169,27 @@ lm_list_to_partable <- function(object,
                                 keep_intercepts = FALSE,
                                 vcov_args = list(),
                                 pvalue_fun = NULL,
-                                rsquare = FALSE) {
+                                rsquare = FALSE,
+                                ci = FALSE,
+                                ci_fun = stats::confint,
+                                ci_args = list(level = .95)) {
+
+    ci_fun <- match.fun(ci_fun)
 
     out_ptable <- lm2ptable_basic(object,
                               vcov_args = vcov_args,
                               pvalue_fun = pvalue_fun)
     out0 <- out_ptable$est
+
+    if (ci) {
+      ci_out <- lm_list_to_ci(object,
+                              ci_fun = ci_fun,
+                              ci_args = ci_args)
+      out0 <- merge(x = out0,
+                    y = ci_out,
+                    all.x = TRUE,
+                    all.y = FALSE)
+    }
 
     if (!rsquare) {
         out0 <- out0[-which(out0$op == "r2"), ]
@@ -190,7 +219,16 @@ lm_list_to_partable <- function(object,
 
     # Add covariances of x-variables
     ovx <- ov_names(out0)
-    tmp3 <- mm_cov(out_ptable$implied_stats$cov[ovx, ovx])
+    tmp3 <- mm_cov(out_ptable$implied_stats$cov[ovx, ovx, drop = FALSE])
+
+    if (ci) {
+      tmp1$ci.lower <- NA
+      tmp1$ci.upper <- NA
+      tmp2$ci.lower <- NA
+      tmp2$ci.upper <- NA
+      tmp3$ci.lower <- NA
+      tmp3$ci.upper <- NA
+    }
 
     # Generate the final output
     out <- rbind(out0,
@@ -211,6 +249,57 @@ lm_list_to_partable <- function(object,
     row.names(out) <- NULL
     out
   }
+
+#' @noRd
+lm2ci <- function(object,
+                  ci_fun,
+                  ci_args) {
+  ci_out <- do.call(ci_fun,
+                    c(list(object),
+                      ci_args))
+  colnames(ci_out) <- c("ci.lower", "ci.upper")
+  ci_out
+}
+
+#' @noRd
+lm_list_to_ci <- function(object,
+                          ci_fun = stats::confint,
+                          ci_args = list(level = .95)) {
+  ci_out <- sapply(object,
+                    lm2ci,
+                    ci_fun = ci_fun,
+                    ci_args = ci_args,
+                    simplify = FALSE)
+  ynames <- sapply(object,
+                    get_response)
+  ci_out1 <- mapply(ci_table,
+                    ci_i = ci_out,
+                    y = ynames,
+                    SIMPLIFY = FALSE)
+  ci_out2 <- do.call(rbind,
+                     ci_out1)
+  ci_out2
+}
+
+#' @noRd
+
+ci_table <- function(ci_i, y) {
+  ci_i <- as.data.frame(ci_i)
+  p <- nrow(ci_i)
+  lhs <- rep(y, p)
+  rhs <- rownames(ci_i)
+  rhs <- gsub("(Intercept)",
+              "",
+              rhs,
+              fixed = TRUE)
+  op <- c("~1", rep("~", p - 1))
+  ci_i2 <- data.frame(lhs = lhs,
+                      op = op,
+                      rhs = rhs,
+                      ci.lower = ci_i$ci.lower,
+                      ci.upper = ci_i$ci.upper)
+  ci_i2
+}
 
 # The following functions are adapted from manymome
 
