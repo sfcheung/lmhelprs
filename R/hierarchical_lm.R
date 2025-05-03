@@ -79,7 +79,10 @@
 #' fitting functions may also be used,
 #' but should be used with cautions.
 #' Please refer to the "How it works"
-#' section in "Details."
+#' section in "Details." It also supports
+#' the output of [many_lm()], and can mix
+#' the outputs of [many_lm()] with those
+#' of [lm()].
 #'
 #' @author Shu Fai Cheung <https://orcid.org/0000-0002-9871-9448>
 #'
@@ -102,19 +105,34 @@
 #'
 hierarchical_lm <- function(...) {
     lm_outs <- list(...)
+    # Handle lm_list object
+    lm_outs <- lapply(lm_outs, function(xx) {
+                      if (inherits(xx, "lm_list")) {
+                        # unlist() does not work
+                        tmp <- lapply(xx,
+                                      function(x) x)
+                        return(tmp)
+                      } else {
+                        return(list(xx))
+                      }
+                    })
+    lm_outs <- unlist(lm_outs, recursive = FALSE)
     check_y <- do.call(same_response, lm_outs)
     if (!check_y) {
         stop("The models do not have the same outcome variable.")
       }
-    tmp <- same_lm_n(...)
+    tmp <- do.call(same_lm_n,
+                   lm_outs)
     if (!isTRUE(tmp)) {
         stop(tmp)
       }
-    tmp <- same_lm_means(...)
+    tmp <- do.call(same_lm_means,
+                   lm_outs)
     if (!isTRUE(tmp)) {
         stop(tmp)
       }
-    tmp <- same_lm_cov(...)
+    tmp <- do.call(same_lm_cov,
+                   lm_outs)
     if (!isTRUE(tmp)) {
         stop(tmp)
       }
