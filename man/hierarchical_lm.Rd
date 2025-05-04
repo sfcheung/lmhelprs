@@ -13,7 +13,10 @@ objects. The outputs of other model
 fitting functions may also be used,
 but should be used with cautions.
 Please refer to the "How it works"
-section in "Details."}
+section in "Details." It also supports
+the output of \code{\link[=many_lm]{many_lm()}}, and can mix
+the outputs of \code{\link[=many_lm]{many_lm()}} with those
+of \code{\link[=lm]{lm()}}.}
 }
 \value{
 If the models can be ordered in a
