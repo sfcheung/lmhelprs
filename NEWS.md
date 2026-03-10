@@ -1,3 +1,11 @@
+# lmhelprs 0.4.3.1
+
+## New Features
+
+- Updated `many_lm()` to support
+  a model formula that spans more than
+  one line. (0.4.3.1)
+
 # lmhelprs 0.4.3
 
 ## New Features
