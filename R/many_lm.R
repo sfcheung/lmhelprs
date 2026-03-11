@@ -195,7 +195,7 @@ lm2list_free <- function(...) {
 
 #' @noRd
 
-parse_models <- function(x) {
+parse_models_old <- function(x) {
     if (!is.character(x)) {
         stop("Input not characters/strings.")
       }
@@ -213,4 +213,40 @@ parse_models <- function(x) {
     xx <- trimws(xx)
     xx
   }
+
+#' @noRd
+
+parse_models <- function(x) {
+  if (!is.character(x)) {
+      stop("Input not characters/strings.")
+    }
+  if (length(x) > 1) {
+      x <- paste(x, collapse = "\n")
+    }
+  xx <- strsplit(x, "\n")[[1]]
+  ws <- grepl("^\\s*$", xx)
+  xx <- xx[!ws]
+  cm <- grepl("^\\s*\\#", xx)
+  xx <- xx[!cm]
+  if (length(xx) == 0) {
+      stop("No valid formulas.")
+    }
+  xx <- trimws(xx)
+  # Find line with a rigbt-hand side term
+  op <- grepl("~", xx, fixed = TRUE)
+  tmp <- cut(
+            seq_along(xx),
+            breaks = c(0, which(op), length(xx) + 1),
+            right = FALSE
+          )
+  out <- split(xx,
+               tmp,
+               drop = TRUE)
+  out <- sapply(
+            out,
+            paste,
+            collapse = " "
+          )
+  unname(out)
+}
 
