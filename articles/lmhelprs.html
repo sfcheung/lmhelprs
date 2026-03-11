@@ -23,7 +23,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">lmhelprs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -120,7 +120,8 @@ raised:</p>
 <code class="sourceCode R"><span><span class="va">lm2a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">x1</span> <span class="op">+</span> <span class="va">x2</span>, <span class="va">data_test1</span><span class="op">)</span></span>
 <span><span class="va">lm2b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">x1</span> <span class="op">+</span> <span class="va">x3</span> <span class="op">+</span> <span class="va">x4</span>, <span class="va">data_test1</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/hierarchical_lm.html">hierarchical_lm</a></span><span class="op">(</span><span class="va">lm2a</span>, <span class="va">lm2b</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in hierarchical_lm(lm2a, lm2b): The models do not have hierarchical relations.</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BBBB00; font-weight: bold;">Error</span><span style="font-weight: bold;"> in `hierarchical_lm()`:</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> The models do not have hierarchical relations.</span></span></code></pre></div>
 <p>Please refer to the help page of <code><a href="../reference/hierarchical_lm.html">hierarchical_lm()</a></code> on
 how it works, and the print method of its output
 (<code><a href="../reference/print.hierarchical_lm.html">print.hierarchical_lm()</a></code>) on how to customize the
@@ -239,7 +240,8 @@ be raised:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">lm_mod2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">x1</span> <span class="op">+</span> <span class="va">x2</span><span class="op">*</span><span class="va">x3</span> <span class="op">+</span> <span class="va">x2</span><span class="op">*</span><span class="va">x4</span>, <span class="va">data_test1</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/test_highest.html">test_highest</a></span><span class="op">(</span><span class="va">lm_mod2</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in highest_order(lm_out): No unique highest order term.</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BBBB00; font-weight: bold;">Error</span><span style="font-weight: bold;"> in `highest_order()`:</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BBBB00;">!</span> No unique highest order term.</span></span></code></pre></div>
 <p>Please refer to the help page of <code><a href="../reference/test_highest.html">test_highest()</a></code> on how
 it works,</p>
 </div>
@@ -260,7 +262,7 @@ open a GitHub issue. Thanks.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer>
