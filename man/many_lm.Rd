@@ -20,7 +20,7 @@ be omitted (though not suggested).}
 is handled across models. If \code{TRUE},
 the default, then only cases with
 no missing data on all variables used
-in at least one of the models will be
+at least one of the models will be
 retained (i.e., listwise deletion).
 If \code{FALSE}, then missing data will be
 handled in each model separately by
@@ -59,11 +59,6 @@ used in the model will be removed.
 Each call to \code{\link[=lm]{lm()}} will have \code{subset}
 set to an integer vector of cases
 \emph{not} removed (i.e., cases retained)
-
-NOTE: The data frame should not be
-processed by \code{na.omit}. If it was,
-the information on cases omitted will
-be removed.
 }
 
 \subsection{Handling the \code{subset} argument}{
