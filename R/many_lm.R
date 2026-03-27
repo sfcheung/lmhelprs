@@ -27,6 +27,12 @@
 #' set to an integer vector of cases
 #' *not* removed (i.e., cases retained)
 #'
+#' NOTE: The data frame should not be
+#' processed by `na.omit`. If it was,
+#' the information on cases omitted will
+#' be removed.
+#'
+#'
 #' ## Handling the `subset` argument
 #'
 #' If `subset` is used when calling this
@@ -55,7 +61,7 @@
 #' is handled across models. If `TRUE`,
 #' the default, then only cases with
 #' no missing data on all variables used
-#' at least one of the models will be
+#' in at least one of the models will be
 #' retained (i.e., listwise deletion).
 #' If `FALSE`, then missing data will be
 #' handled in each model separately by
@@ -98,6 +104,12 @@ many_lm <- function(models,
     models1 <- parse_models(models)
     data_full <- eval(my_call$data,
                       envir = parent.frame())
+    if (!is.null(attr(data_full, "na.action"))) {
+      attr(data_full, "na.action") <- NULL
+    }
+    if (!is.null(attr(data_full, "na.exclude"))) {
+      attr(data_full, "na.exclude") <- NULL
+    }
     if (na_omit_all) {
         all_vars <- sapply(models1,
                             function(x) {

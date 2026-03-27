@@ -1,3 +1,10 @@
+# lmhelprs 0.4.4.1
+
+- In `many_lm()`, if a data frame has
+  already processed by `na.action()`,
+  the `na.action` attribute will be
+  removed, and a warning will be issued.
+
 # lmhelprs 0.4.4
 
 ## New Features
