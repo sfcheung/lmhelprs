@@ -34,6 +34,7 @@ can be used with `manymome`.
 ## Examples
 
 ``` r
+
 data(data_test1)
 mod <- "x3 ~ x2 + x1
         x4 ~ x3
@@ -43,10 +44,10 @@ out
 #> 
 #> The models:
 #> x3 ~ x2 + x1
-#> <environment: 0x562c1ef47c38>
+#> <environment: 0x56177c3786f0>
 #> x4 ~ x3
-#> <environment: 0x562c1ef47c38>
+#> <environment: 0x56177c3786f0>
 #> x5 ~ x4 * x1
-#> <environment: 0x562c1ef47c38>
+#> <environment: 0x56177c3786f0>
 #> 
 ```

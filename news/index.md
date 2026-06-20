@@ -1,5 +1,14 @@
 # Changelog
 
+## lmhelprs 0.4.4.1
+
+### Miscellaneous
+
+- Fixed
+  [`lm_list_to_partable()`](https://sfcheung.github.io/lmhelprs/reference/lm_list_to_partable.md)
+  to handle regression models with exactly the same predictors.
+  (0.4.4.1)
+
 ## lmhelprs 0.4.4
 
 CRAN release: 2026-03-10

@@ -77,6 +77,7 @@ Shu Fai Cheung <https://orcid.org/0000-0002-9871-9448>
 ## Examples
 
 ``` r
+
 data(data_test1)
 mod <- "x3 ~ x2 + x1
         x4 ~ x3
@@ -88,7 +89,7 @@ summary(out)
 #> 
 #> Model:
 #> x3 ~ x2 + x1
-#> <environment: 0x562c1812b590>
+#> <environment: 0x561774cb4a10>
 #>             Estimate Std. Error t value Pr(>|t|)    
 #> (Intercept)  -0.0835     0.0968   -0.86  0.39067    
 #> x2           -0.0494     0.0896   -0.55  0.58289    
@@ -99,7 +100,7 @@ summary(out)
 #> 
 #> Model:
 #> x4 ~ x3
-#> <environment: 0x562c1812b590>
+#> <environment: 0x561774cb4a10>
 #>             Estimate Std. Error t value Pr(>|t|)  
 #> (Intercept)  -0.1144     0.0866   -1.32    0.190  
 #> x3            0.2156     0.0846    2.55    0.012 *
@@ -109,7 +110,7 @@ summary(out)
 #> 
 #> Model:
 #> x5 ~ x4 * x1
-#> <environment: 0x562c1812b590>
+#> <environment: 0x561774cb4a10>
 #>             Estimate Std. Error t value Pr(>|t|)   
 #> (Intercept) -0.10644    0.10399   -1.02   0.3086   
 #> x4           0.15124    0.11589    1.31   0.1950   

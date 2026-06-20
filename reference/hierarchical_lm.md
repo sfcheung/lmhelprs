@@ -85,6 +85,7 @@ Shu Fai Cheung <https://orcid.org/0000-0002-9871-9448>
 ## Examples
 
 ``` r
+
 dat <- data_test1
 lm1 <- lm(y ~ x1 + x2, dat)
 lm2 <- lm(y ~ x1 + x2 + x3 + x4, dat)

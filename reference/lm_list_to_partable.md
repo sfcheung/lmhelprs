@@ -114,6 +114,7 @@ Shu Fai Cheung <https://orcid.org/0000-0002-9871-9448>
 ## Examples
 
 ``` r
+
 data(data_test1)
 mod <- "x3 ~ x2*x1
         x4 ~ x3

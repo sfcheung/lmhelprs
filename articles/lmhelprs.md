@@ -30,6 +30,7 @@ is written with these features:
 Let’s fit three models for illustration:
 
 ``` r
+
 library(lmhelprs)
 data(data_test1)
 lm1a <- lm(y ~ x1 + x2, data_test1)
@@ -43,6 +44,7 @@ in any order. Hierarchical regression analysis will be conducted
 correctly, with R-squared and R-squared change:
 
 ``` r
+
 hierarchical_lm(lm1b, lm1a, lm1c)
 #> Analysis of Variance Table
 #> 
@@ -60,6 +62,7 @@ hierarchical_lm(lm1b, lm1a, lm1c)
 If the models are not in hierarchical order, an error will be raised:
 
 ``` r
+
 lm2a <- lm(y ~ x1 + x2, data_test1)
 lm2b <- lm(y ~ x1 + x3 + x4, data_test1)
 hierarchical_lm(lm2a, lm2b)
@@ -85,6 +88,7 @@ increase due to adding this term.
 For example:
 
 ``` r
+
 lm_mod <- lm(y ~ x1 + cat2 + cat1 + cat2:cat1, data_test1)
 summary(lm_mod)
 #> 
@@ -128,6 +132,7 @@ without this interaction,
 can be used:
 
 ``` r
+
 test_highest(lm_mod)
 #> Analysis of Variance Table
 #> 
@@ -147,6 +152,7 @@ The function
 can be used for third and higher order term. For example:
 
 ``` r
+
 lm_mod3 <- lm(y ~ x1 + x2 + x3*x4*cat2, data_test1)
 summary(lm_mod3)
 #> 
@@ -200,6 +206,7 @@ If a model has more than one term of the highest order, an error will be
 raised:
 
 ``` r
+
 lm_mod2 <- lm(y ~ x1 + x2*x3 + x2*x4, data_test1)
 test_highest(lm_mod2)
 #> Error in `highest_order()`:

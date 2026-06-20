@@ -1,6 +1,6 @@
 # lmhelprs: A collection of helper functions for some common tasks in fitting linear models, mainly by `lm()`
 
-(Version 0.4.4, updated on 2026-03-10, [release
+(Version 0.4.4.1, updated on 2026-06-21, [release
 history](https://sfcheung.github.io/lmhelprs/news/index.html))
 
 A collection of helper functions for multiple regression models fitted
@@ -18,6 +18,7 @@ The stable CRAN version can be installed by
 [`install.packages()`](https://rdrr.io/r/utils/install.packages.html):
 
 ``` r
+
 install.packages("lmhelprs")
 ```
 
@@ -25,6 +26,7 @@ The latest developmental version of this package can be installed by
 `remotes::install_github`:
 
 ``` r
+
 remotes::install_github("sfcheung/lmhelprs")
 ```
 
