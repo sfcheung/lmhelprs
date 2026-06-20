@@ -342,7 +342,7 @@ merge_model_matrices <- function(lm_list) {
                     y_data <- stats::model.frame(x)[, y, drop = FALSE]
                     cbind(y_data, out)
                   })
-    vnames <- unique(unlist(sapply(mm, colnames)))
+    vnames <- unique(unlist(lapply(mm, colnames)))
     idname <- newname(vnames)
     mm1 <- lapply(mm, function(x) {
                           j <- colnames(x)

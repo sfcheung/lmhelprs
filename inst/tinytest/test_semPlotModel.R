@@ -40,6 +40,37 @@ expect_equivalent(out1c[(out1c$lhs == "y") &
                         (out1c$op == "~1"), "est"],
                   coef(out1[[2]])[1])
 
+# Same IVs
+
+
+mod1 <- "
+
+# Comments
+    x5 ~ x1 + x2
+        # Second models
+
+    y ~ x1 + x2
+  # The last line
+
+
+         "
+
+out1 <- many_lm(mod1, dat)
+
+out1b <- lm_list_to_partable(out1)
+expect_equivalent(out1b[(out1b$lhs == "y") &
+                        (out1b$op == "~"), "est"],
+                  coef(out1[[2]])[-1])
+se_chk <- sqrt(diag(vcov(out1[[2]])))
+expect_equivalent(out1b[(out1b$lhs == "y") &
+                        (out1b$op == "~"), "se"],
+                  se_chk[-1])
+
+out1c <- lm_list_to_partable(out1, keep_intercepts = TRUE)
+expect_equivalent(out1c[(out1c$lhs == "y") &
+                        (out1c$op == "~1"), "est"],
+                  coef(out1[[2]])[1])
+
 if (FALSE) {
 # Not used for now
 
