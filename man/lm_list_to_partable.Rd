@@ -68,7 +68,7 @@ requesting 95\% confidence intervals.}
 A data frame object with columns such
 as \code{lhs}, \code{op}, \code{rhs}, and \code{est},
 major columns of the output of
-\code{\link[lavaan:parTable]{lavaan::parameterTable()}} necessary
+\code{\link[lavaan:parameterTable]{lavaan::parameterTable()}} necessary
 for plotting the model using
 \code{\link[semPlot:semPaths]{semPlot::semPaths()}}.
 }
@@ -83,7 +83,7 @@ lit of \code{lm} objects, such as the
 output of \code{\link[=many_lm]{many_lm()}} or
 \code{\link[manymome:lm2list]{manymome::lm2list()}}, to a table of
 parameter estimates similar to the
-output of \link[lavaan:parTable]{lavaan::parameterTable}.
+output of \link[lavaan:parameterTable]{lavaan::parameterTable}.
 
 The output is designed to be used by
 \code{\link[semPlot:semPaths]{semPlot::semPaths()}} and so contains
