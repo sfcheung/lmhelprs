@@ -8,7 +8,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/sfcheung/lmhelprs/blob/main/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/sfcheung/lmhelprs/blob/v0.4.5/DESCRIPTION)
 
 Cheung S (2026). *lmhelprs: Helper Functions for Linear Model Analysis*.
 R package version 0.4.5, <https://sfcheung.github.io/lmhelprs/>.
