@@ -1,6 +1,6 @@
 # lmhelprs: A collection of helper functions for some common tasks in fitting linear models, mainly by `lm()`
 
-(Version 0.4.4.1, updated on 2026-06-21, [release
+(Version 0.4.5, updated on 2026-06-29, [release
 history](https://sfcheung.github.io/lmhelprs/news/index.html))
 
 A collection of helper functions for multiple regression models fitted
@@ -34,7 +34,7 @@ remotes::install_github("sfcheung/lmhelprs")
 
 Most of the tasks I covered are those sometimes I needed when using the
 [`manymome` package](https://sfcheung.github.io/manymome/) (Cheung &
-Cheung, 2023) and and the [`stdmod`
+Cheung, 2023) and the [`stdmod`
 package](https://sfcheung.github.io/stdmod/) (Cheung, Cheung, Lau, Hui,
 and Vong, 2022). Therefore, when ready, these two packages will make use
 of the functions from `lmhelprs`. However, most of the functions can
@@ -55,5 +55,5 @@ also be used in other scenarios. Therefore, I named it `lmhelprs`.
 
 # Issues
 
-If you have any suggestions and found any bugs, please feel feel to open
-a GitHub issue. Thanks.
+If you have any suggestions and found any bugs, please feel to open a
+GitHub issue. Thanks.

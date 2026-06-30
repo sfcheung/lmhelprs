@@ -11,12 +11,12 @@ Source:
 [`DESCRIPTION`](https://github.com/sfcheung/lmhelprs/blob/main/DESCRIPTION)
 
 Cheung S (2026). *lmhelprs: Helper Functions for Linear Model Analysis*.
-R package version 0.4.4.1, <https://sfcheung.github.io/lmhelprs/>.
+R package version 0.4.5, <https://sfcheung.github.io/lmhelprs/>.
 
     @Manual{,
       title = {lmhelprs: Helper Functions for Linear Model Analysis},
       author = {Shu Fai Cheung},
       year = {2026},
-      note = {R package version 0.4.4.1},
+      note = {R package version 0.4.5},
       url = {https://sfcheung.github.io/lmhelprs/},
     }

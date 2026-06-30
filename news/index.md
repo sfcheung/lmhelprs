@@ -1,6 +1,8 @@
 # Changelog
 
-## lmhelprs 0.4.4.1
+## lmhelprs 0.4.5
+
+CRAN release: 2026-06-30
 
 ### Miscellaneous
 
