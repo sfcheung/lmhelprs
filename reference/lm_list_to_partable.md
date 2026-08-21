@@ -204,6 +204,11 @@ if (requireNamespace("semPlot", quietly = TRUE)) {
 
 }
 
+#> Warning: The 'rockchalk' package is not installed; using raw coefficients instead of standardized ones.
+#> Warning: The 'rockchalk' package is not installed; using raw coefficients instead of standardized ones.
+#> Warning: The 'rockchalk' package is not installed; using raw coefficients instead of standardized ones.
 
+#> Warning: The 'rockchalk' package is not installed; using raw coefficients instead of standardized ones.
+#> Warning: The 'rockchalk' package is not installed; using raw coefficients instead of standardized ones.
 
 ```
