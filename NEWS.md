@@ -1,3 +1,11 @@
+# lmhelprs 0.4.5.1
+
+## New Features
+
+- Added an `update()` method to the output
+  of `many_lm()`.
+  (0.4.5.1)
+
 # lmhelprs 0.4.5
 
 ## Miscellaneous
@@ -6,7 +14,6 @@
   regression models with exactly the
   same predictors.
   (0.4.4.1)
-
 
 # lmhelprs 0.4.4
 

@@ -14,8 +14,13 @@ Object}
 \item{object}{The output of
 \code{\link[=many_lm]{many_lm()}}.}
 
-\item{...}{Other arguments. Not
-used.}
+\item{...}{Other arguments. For
+the \code{summary} method, these are
+arguments to be passed to the
+\code{summary} method for each model
+(usually \code{\link[=summary.lm]{summary.lm()}}). For the
+\code{print} method, these are arguments
+to be passed to \code{\link[stats:printCoefmat]{stats::printCoefmat()}}.}
 
 \item{x}{An object of class
 \code{summary_lm_list_lmhelprs}.}

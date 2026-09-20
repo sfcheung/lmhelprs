@@ -2,10 +2,13 @@
 % Please edit documentation in R/many_lm.R
 \name{many_lm}
 \alias{many_lm}
+\alias{update.lm_list_lmhelprs}
 \title{Fit Linear Models Defined By
 Model Syntax}
 \usage{
 many_lm(models, data, na_omit_all = TRUE, ...)
+
+\method{update}{lm_list_lmhelprs}(object, ..., evaluate = TRUE)
 }
 \arguments{
 \item{models}{Character. Model syntax.
@@ -26,12 +29,31 @@ If \code{FALSE}, then missing data will be
 handled in each model separately by
 \code{lm()}.}
 
-\item{...}{Additional arguments. To
-be passed to \code{lm()}.}
+\item{...}{Additional arguments. For
+\code{\link[=many_lm]{many_lm()}}, these arguments will
+be passed to \code{lm()}.
+For the update method of the output
+of \code{\link[=many_lm]{many_lm()}}, these arguments will
+used to update the call to \code{\link[=many_lm]{many_lm()}}.}
+
+\item{object}{For the update method,
+it is the output of \code{\link[=many_lm]{many_lm()}}.}
+
+\item{evaluate}{If \code{TRUE}, the
+updated call will be evaluated. If
+\code{FALSE}, the updated call will be
+returned.}
 }
 \value{
 A list of the output of \code{lm()}. The
 class is \code{lm_list_lmhelprs}.
+
+For the update method of the output
+of \code{\link[=many_lm]{many_lm()}}, if \code{evaluate} is \code{TRUE},
+the updated output of \code{\link[=many_lm]{many_lm()}}
+will be returned. If \code{evaluate} is
+\code{FALSE}, the updated call will be
+returned.
 }
 \description{
 Fit a list of linear
@@ -73,6 +95,9 @@ by a numeric vector of cases retained,
 determined by both missing data and
 the original value of the \code{subset}.
 }
+
+The output of \code{\link[=many_lm]{many_lm()}} has a update
+method.
 }
 \examples{
 

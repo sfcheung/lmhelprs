@@ -61,8 +61,12 @@
 #' handled in each model separately by
 #' `lm()`.
 #'
-#' @param ... Additional arguments. To
+#' @param ... Additional arguments. For
+#' [many_lm()], these arguments will
 #' be passed to `lm()`.
+#' For the update method of the output
+#' of [many_lm()], these arguments will
+#' used to update the call to [many_lm()].
 #'
 #' @author Shu Fai Cheung <https://orcid.org/0000-0002-9871-9448>
 #'
@@ -181,6 +185,51 @@ many_lm <- function(models,
     attr(out2, "call") <- match.call()
     out2
   }
+
+#' @details
+#' The output of [many_lm()] has a update
+#' method.
+#'
+#' @return
+#' For the update method of the output
+#' of [many_lm()], if `evaluate` is `TRUE`,
+#' the updated output of [many_lm()]
+#' will be returned. If `evaluate` is
+#' `FALSE`, the updated call will be
+#' returned.
+#'
+#' @param object For the update method,
+#' it is the output of [many_lm()].
+#'
+#' @param evaluate If `TRUE`, the
+#' updated call will be evaluated. If
+#' `FALSE`, the updated call will be
+#' returned.
+#'
+#' @rdname many_lm
+#' @export
+update.lm_list_lmhelprs <- function(
+  object,
+  ...,
+  evaluate = TRUE
+) {
+  # Adapted from update.default()
+  call <- attr(object, "call")
+  extras <- match.call(expand.dots = FALSE)$...
+  if (length(extras)) {
+    existing <- !is.na(match(names(extras), names(call)))
+    for (a in names(extras)[existing]) call[[a]] <- extras[[a]]
+    if (any(!existing)) {
+      call <- c(as.list(call), extras[!existing])
+      call <- as.call(call)
+    }
+  }
+  if (evaluate) {
+    return(eval(call, parent.frame()))
+  } else {
+    return(call)
+  }
+}
 
 #' @noRd
 
