@@ -67,6 +67,8 @@
 #' For the update method of the output
 #' of [many_lm()], these arguments will
 #' used to update the call to [many_lm()].
+#' For the coefficient method, these
+#' arguments will be ignored.
 #'
 #' @author Shu Fai Cheung <https://orcid.org/0000-0002-9871-9448>
 #'
@@ -229,6 +231,66 @@ update.lm_list_lmhelprs <- function(
   } else {
     return(call)
   }
+}
+
+#' @details
+#' The `coef` method extracts the
+#' regression coefficients in the
+#' `lavaan` style: `y ~ x`, `y`
+#' the response variable and `x` a term.
+#'
+#' @return
+#' The `coef` method returns a numeric
+#' vector of the coefficients.
+#'
+#' @param y For the `coef` method,
+#' if set to a character vector,
+#' only the coefficients of the models
+#' of the response variables listed in
+#' `y` will be returned. If `NULL`, all
+#' coefficients will be returned.
+#'
+#' @rdname many_lm
+#' @export
+coef.lm_list_lmhelprs <- function(
+  object,
+  y = NULL,
+  ...
+) {
+  out0 <- lm_list_to_partable(
+    object,
+    keep_intercepts = TRUE
+  )
+  i <- out0$op %in% c("~", "~1")
+  out1 <- out0[i, , drop = FALSE]
+  out1$lavlabel <- paste0(
+    out1$lhs,
+    out1$op,
+    out1$rhs
+  )
+  vnames <- unique(out1$lhs)
+  j <- sapply(
+        vnames,
+        \(x) {
+          !any(out1[out1$lhs == x, "op", drop = TRUE] %in% "~")
+        })
+  ov_x <- vnames[j]
+  ov_y <- vnames[!j]
+  if (!is.null(y)) {
+    if (!is.null(y)) {
+      tmp <- y %in% ov_y
+      if (!all(tmp)) {
+        tmp2 <- y[!tmp]
+        stop("y not all in the model: ",
+            paste0(tmp2, collapse = ", "))
+      }
+    }
+    ov_y <- y
+  }
+  out1 <- out1[out1$lhs %in% ov_y, , drop = FALSE]
+  out2 <- out1$est
+  names(out2) <- out1$lavlabel
+  out2
 }
 
 #' @noRd

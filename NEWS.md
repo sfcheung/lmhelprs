@@ -1,10 +1,14 @@
-# lmhelprs 0.4.5.1
+# lmhelprs 0.4.5.2
 
 ## New Features
 
 - Added an `update()` method to the output
   of `many_lm()`.
   (0.4.5.1)
+
+- Added a `coef()` method to the output
+  of `many_lm()`.
+  (0.4.5.2)
 
 # lmhelprs 0.4.5
 

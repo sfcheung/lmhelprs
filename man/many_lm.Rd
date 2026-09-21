@@ -3,12 +3,15 @@
 \name{many_lm}
 \alias{many_lm}
 \alias{update.lm_list_lmhelprs}
+\alias{coef.lm_list_lmhelprs}
 \title{Fit Linear Models Defined By
 Model Syntax}
 \usage{
 many_lm(models, data, na_omit_all = TRUE, ...)
 
 \method{update}{lm_list_lmhelprs}(object, ..., evaluate = TRUE)
+
+\method{coef}{lm_list_lmhelprs}(object, y = NULL, ...)
 }
 \arguments{
 \item{models}{Character. Model syntax.
@@ -34,7 +37,9 @@ handled in each model separately by
 be passed to \code{lm()}.
 For the update method of the output
 of \code{\link[=many_lm]{many_lm()}}, these arguments will
-used to update the call to \code{\link[=many_lm]{many_lm()}}.}
+used to update the call to \code{\link[=many_lm]{many_lm()}}.
+For the coefficient method, these
+arguments will be ignored.}
 
 \item{object}{For the update method,
 it is the output of \code{\link[=many_lm]{many_lm()}}.}
@@ -43,6 +48,13 @@ it is the output of \code{\link[=many_lm]{many_lm()}}.}
 updated call will be evaluated. If
 \code{FALSE}, the updated call will be
 returned.}
+
+\item{y}{For the \code{coef} method,
+if set to a character vector,
+only the coefficients of the models
+of the response variables listed in
+\code{y} will be returned. If \code{NULL}, all
+coefficients will be returned.}
 }
 \value{
 A list of the output of \code{lm()}. The
@@ -54,6 +66,9 @@ the updated output of \code{\link[=many_lm]{many_lm()}}
 will be returned. If \code{evaluate} is
 \code{FALSE}, the updated call will be
 returned.
+
+The \code{coef} method returns a numeric
+vector of the coefficients.
 }
 \description{
 Fit a list of linear
@@ -98,6 +113,11 @@ the original value of the \code{subset}.
 
 The output of \code{\link[=many_lm]{many_lm()}} has a update
 method.
+
+The \code{coef} method extracts the
+regression coefficients in the
+\code{lavaan} style: \code{y ~ x}, \code{y}
+the response variable and \code{x} a term.
 }
 \examples{
 
