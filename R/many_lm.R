@@ -360,6 +360,76 @@ vcov.lm_list_lmhelprs <- function(
   out
 }
 
+#' @details
+#' The `confint` method computes the
+#' confidence intervals for the coefficients.
+#'
+#' @return
+#' The `confint` method returns a two-column
+#' matrix of the confidence intervals.
+#'
+#' @param ci_fun The function to be used
+#' to form the confidence intervals for
+#' regression coefficients. Default
+#' is `stats::confint`
+#'
+#' @param ci_args A named list of
+#' arguments to be passed to `ci_fun`.
+#' Default is `list(level = .95)`,
+#' requesting 95% confidence intervals.
+#'
+#'
+#' @param parm The parameters for which
+#' the confidence intervals will be returned.
+#' If `NULL`, the confidence intervals
+#' for all coefficients will be returned.
+#'
+#' @param level The level of confidence
+#' of the confidence levels.
+#'
+#' @rdname many_lm
+#' @export
+confint.lm_list_lmhelprs <- function(
+  object,
+  parm = NULL,
+  level = .95,
+  ci_fun = stats::confint,
+  ci_args = list(),
+  ...
+) {
+  ci_args <- utils::modifyList(
+    ci_args,
+    list(level = level)
+  )
+  out0 <- lm_list_to_partable(
+    object = object,
+    keep_intercepts = TRUE,
+    ci = TRUE,
+    ci_fun = ci_fun,
+    ci_args = ci_args
+  )
+  est <- stats::coef(object)
+  out0$lavlabel <- paste0(
+    out0$lhs,
+    out0$op,
+    out0$rhs
+  )
+  out0 <- out0[out0$lavlabel %in% names(est), ]
+  tmp <- do.call(
+    ci_fun,
+    c(list(object = object[[1]]),
+      ci_args)
+  )
+  out1 <- out0[, c("ci.lower", "ci.upper")]
+  out1 <- as.matrix(out1)
+  rownames(out1) <- out0$lavlabel
+  out1 <- out1[names(est), ]
+  if (!is.null(parm)) {
+    out1 <- out1[parm, ]
+  }
+  colnames(out1) <- colnames(tmp)
+  out1
+}
 #' @noRd
 
 lm2list_free <- function(...) {

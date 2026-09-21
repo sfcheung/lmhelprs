@@ -1,4 +1,4 @@
-# lmhelprs 0.4.5.3
+# lmhelprs 0.4.5.4
 
 ## New Features
 
@@ -13,6 +13,10 @@
 - Added a `vcov()` method for the output
   of `many_lm()`.
   (0.4.5.3)
+
+- Added a `confint()` method for the output
+  of `many_lm()`.
+  (0.4.5.4)
 
 # lmhelprs 0.4.5
 

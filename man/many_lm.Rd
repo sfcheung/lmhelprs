@@ -5,6 +5,7 @@
 \alias{update.lm_list_lmhelprs}
 \alias{coef.lm_list_lmhelprs}
 \alias{vcov.lm_list_lmhelprs}
+\alias{confint.lm_list_lmhelprs}
 \title{Fit Linear Models Defined By
 Model Syntax}
 \usage{
@@ -15,6 +16,15 @@ many_lm(models, data, na_omit_all = TRUE, ...)
 \method{coef}{lm_list_lmhelprs}(object, y = NULL, ...)
 
 \method{vcov}{lm_list_lmhelprs}(object, y = NULL, vcov_args = list(), ...)
+
+\method{confint}{lm_list_lmhelprs}(
+  object,
+  parm = NULL,
+  level = 0.95,
+  ci_fun = stats::confint,
+  ci_args = list(),
+  ...
+)
 }
 \arguments{
 \item{models}{Character. Model syntax.
@@ -65,6 +75,24 @@ when computing the variance-covariance
 matrices
 of the regression coefficients.
 Default is \code{list()}, an empty list.}
+
+\item{parm}{The parameters for which
+the confidence intervals will be returned.
+If \code{NULL}, the confidence intervals
+for all coefficients will be returned.}
+
+\item{level}{The level of confidence
+of the confidence levels.}
+
+\item{ci_fun}{The function to be used
+to form the confidence intervals for
+regression coefficients. Default
+is \code{stats::confint}}
+
+\item{ci_args}{A named list of
+arguments to be passed to \code{ci_fun}.
+Default is \code{list(level = .95)},
+requesting 95\% confidence intervals.}
 }
 \value{
 A list of the output of \code{lm()}. The
@@ -83,6 +111,9 @@ vector of the coefficients.
 The \code{vcov} method returns the
 variance-covariance matrix of the
 parameter estimates of the models.
+
+The \code{confint} method returns a two-column
+matrix of the confidence intervals.
 }
 \description{
 Fit a list of linear
@@ -136,6 +167,9 @@ the response variable and \code{x} a term.
 The \code{vcov} method is used to extract
 the variance-covariance matrices of
 the models.
+
+The \code{confint} method computes the
+confidence intervals for the coefficients.
 }
 \examples{
 
