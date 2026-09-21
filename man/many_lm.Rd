@@ -4,6 +4,7 @@
 \alias{many_lm}
 \alias{update.lm_list_lmhelprs}
 \alias{coef.lm_list_lmhelprs}
+\alias{vcov.lm_list_lmhelprs}
 \title{Fit Linear Models Defined By
 Model Syntax}
 \usage{
@@ -12,6 +13,8 @@ many_lm(models, data, na_omit_all = TRUE, ...)
 \method{update}{lm_list_lmhelprs}(object, ..., evaluate = TRUE)
 
 \method{coef}{lm_list_lmhelprs}(object, y = NULL, ...)
+
+\method{vcov}{lm_list_lmhelprs}(object, y = NULL, vcov_args = list(), ...)
 }
 \arguments{
 \item{models}{Character. Model syntax.
@@ -49,12 +52,19 @@ updated call will be evaluated. If
 \code{FALSE}, the updated call will be
 returned.}
 
-\item{y}{For the \code{coef} method,
+\item{y}{For some methods,
 if set to a character vector,
 only the coefficients of the models
 of the response variables listed in
 \code{y} will be returned. If \code{NULL}, all
 coefficients will be returned.}
+
+\item{vcov_args}{A named list of
+arguments to be passed to \code{\link[stats:vcov]{stats::vcov()}}
+when computing the variance-covariance
+matrices
+of the regression coefficients.
+Default is \code{list()}, an empty list.}
 }
 \value{
 A list of the output of \code{lm()}. The
@@ -69,6 +79,10 @@ returned.
 
 The \code{coef} method returns a numeric
 vector of the coefficients.
+
+The \code{vcov} method returns the
+variance-covariance matrix of the
+parameter estimates of the models.
 }
 \description{
 Fit a list of linear
@@ -118,6 +132,10 @@ The \code{coef} method extracts the
 regression coefficients in the
 \code{lavaan} style: \code{y ~ x}, \code{y}
 the response variable and \code{x} a term.
+
+The \code{vcov} method is used to extract
+the variance-covariance matrices of
+the models.
 }
 \examples{
 

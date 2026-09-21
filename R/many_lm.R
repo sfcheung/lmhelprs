@@ -243,7 +243,7 @@ update.lm_list_lmhelprs <- function(
 #' The `coef` method returns a numeric
 #' vector of the coefficients.
 #'
-#' @param y For the `coef` method,
+#' @param y For some methods,
 #' if set to a character vector,
 #' only the coefficients of the models
 #' of the response variables listed in
@@ -291,6 +291,73 @@ coef.lm_list_lmhelprs <- function(
   out2 <- out1$est
   names(out2) <- out1$lavlabel
   out2
+}
+
+#' @return
+#' The `vcov` method returns the
+#' variance-covariance matrix of the
+#' parameter estimates of the models.
+#'
+#' @details
+#' The `vcov` method is used to extract
+#' the variance-covariance matrices of
+#' the models.
+#'
+#' @param vcov_args A named list of
+#' arguments to be passed to [stats::vcov()]
+#' when computing the variance-covariance
+#' matrices
+#' of the regression coefficients.
+#' Default is `list()`, an empty list.
+#'
+#' @rdname many_lm
+#' @export
+vcov.lm_list_lmhelprs <- function(
+  object,
+  y = NULL,
+  vcov_args = list(),
+  ...
+) {
+  est <- stats::coef(object, y = y, ...)
+  pvalue_fun <- NULL
+
+  # VCOV
+  vcov_all <- lapply(
+    object,
+    \(x) {
+      do.call(
+        stats::vcov,
+        c(list(object = x),
+          vcov_args)
+      )
+    }
+  )
+  y_names <- sapply(
+    object,
+    get_response
+  )
+  for (i in seq_along(vcov_all)) {
+    y_name <-y_names[i]
+    tmp1 <- vcov_all[[i]]
+    tmp2 <- colnames(tmp1)
+    tmp2 <- gsub("(Intercept)",
+                 "1",
+                 tmp2,
+                 fixed = TRUE)
+    tmp2 <- paste0(y_name, "~", tmp2)
+    colnames(tmp1) <- rownames(tmp1) <- tmp2
+    vcov_all[[i]] <- tmp1
+  }
+  p <- length(est)
+  out <- matrix(0, p, p)
+  est_names <-names(est)
+  colnames(out) <- rownames(out) <- est_names
+  for (vcov_i in vcov_all) {
+    tmp <- intersect(est_names, colnames(vcov_i))
+    if (length(tmp) < 1) next
+    out[tmp, tmp] <- vcov_i[tmp, tmp]
+  }
+  out
 }
 
 #' @noRd
