@@ -493,6 +493,32 @@ model.frame.lm_list_lmhelprs <- function(
   out
 }
 
+#' @importFrom stats variable.names
+
+#' @details
+#' The `variable.names` method of the
+#' output of [many_lm()] extract the
+#' variable names of all models.
+#'
+#' @return
+#' The `variable.names` method returns
+#' a character vector of unique variable
+#' names in all the stored models.
+#'
+#' @rdname many_lm
+#' @export
+variable.names.lm_list_lmhelprs <- function(
+  object,
+  ...
+) {
+  out0 <- lapply(
+    object,
+    stats::variable.names
+  )
+  out1 <- unique(unlist(out0))
+  out1
+}
+
 #' @noRd
 
 lm2list_free <- function(...) {

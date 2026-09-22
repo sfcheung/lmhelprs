@@ -8,6 +8,7 @@
 \alias{confint.lm_list_lmhelprs}
 \alias{nobs.lm_list_lmhelprs}
 \alias{model.frame.lm_list_lmhelprs}
+\alias{variable.names.lm_list_lmhelprs}
 \title{Fit Linear Models Defined By
 Model Syntax}
 \usage{
@@ -31,6 +32,8 @@ many_lm(models, data, na_omit_all = TRUE, ...)
 \method{nobs}{lm_list_lmhelprs}(object, ...)
 
 \method{model.frame}{lm_list_lmhelprs}(formula, ...)
+
+\method{variable.names}{lm_list_lmhelprs}(object, ...)
 }
 \arguments{
 \item{models}{Character. Model syntax.
@@ -134,6 +137,10 @@ The \code{model.frame} method of the output
 of \code{\link[=many_lm]{many_lm()}} returns a model frame,
 formed by merging the model frames of
 all models.
+
+The \code{variable.names} method returns
+a character vector of unique variable
+names in all the stored models.
 }
 \description{
 Fit a list of linear
@@ -204,6 +211,10 @@ extracts the stored model frame. It is
 because \code{\link[=many_lm]{many_lm()}} is for fitting
 several models, with several formulas
 instead of only one.
+
+The \code{variable.names} method of the
+output of \code{\link[=many_lm]{many_lm()}} extract the
+variable names of all models.
 }
 \examples{
 

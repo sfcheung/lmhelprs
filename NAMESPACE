@@ -9,6 +9,7 @@ S3method(print,lm_list_lmhelprs)
 S3method(print,summary_lm_list_lmhelprs)
 S3method(summary,lm_list_lmhelprs)
 S3method(update,lm_list_lmhelprs)
+S3method(variable.names,lm_list_lmhelprs)
 S3method(vcov,lm_list_lmhelprs)
 export(hierarchical)
 export(hierarchical_lm)
@@ -16,4 +17,7 @@ export(highest_order)
 export(lm_list_to_partable)
 export(many_lm)
 export(test_highest)
-importFrom(stats,nobs)
+importFrom(stats,
+  nobs,
+  variable.names
+)
