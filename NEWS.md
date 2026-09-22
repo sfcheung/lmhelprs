@@ -1,4 +1,4 @@
-# lmhelprs 0.4.5.4
+# lmhelprs 0.4.5.5
 
 ## New Features
 
@@ -17,6 +17,12 @@
 - Added a `confint()` method for the output
   of `many_lm()`.
   (0.4.5.4)
+
+- Added a `nobs()` method for the output
+  of `many_lm()`.
+  (0.4.5.5)
+
+
 
 # lmhelprs 0.4.5
 

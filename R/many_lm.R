@@ -67,8 +67,9 @@
 #' For the update method of the output
 #' of [many_lm()], these arguments will
 #' used to update the call to [many_lm()].
-#' For the coefficient method, these
-#' arguments will be ignored.
+#' For other methods, these
+#' arguments will be passed to methods
+#' if applicable.
 #'
 #' @author Shu Fai Cheung <https://orcid.org/0000-0002-9871-9448>
 #'
@@ -200,7 +201,8 @@ many_lm <- function(models,
 #' `FALSE`, the updated call will be
 #' returned.
 #'
-#' @param object For the update method,
+#' @param object For methods of the output
+#' of [many_lm()],
 #' it is the output of [many_lm()].
 #'
 #' @param evaluate If `TRUE`, the
@@ -430,6 +432,35 @@ confint.lm_list_lmhelprs <- function(
   colnames(out1) <- colnames(tmp)
   out1
 }
+
+#' @importFrom stats nobs
+
+#' @details
+#' The `nobs` method extracts the
+#' number of cases actually used in
+#' the analysis. Should be identical
+#' for all models.
+#'
+#' @return
+#' The `nobs` method returns the
+#' number of cases used in the models.
+#'
+#' @rdname many_lm
+#' @export
+nobs.lm_list_lmhelprs <- function(
+  object,
+  ...
+) {
+  ns <- sapply(
+    object,
+    stats::nobs,
+  )
+  if (all(ns != ns[1])) {
+    stop("Something's wrong. The models do not have the same number of cases.")
+  }
+  ns[1]
+}
+
 #' @noRd
 
 lm2list_free <- function(...) {

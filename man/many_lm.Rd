@@ -6,6 +6,7 @@
 \alias{coef.lm_list_lmhelprs}
 \alias{vcov.lm_list_lmhelprs}
 \alias{confint.lm_list_lmhelprs}
+\alias{nobs.lm_list_lmhelprs}
 \title{Fit Linear Models Defined By
 Model Syntax}
 \usage{
@@ -25,6 +26,8 @@ many_lm(models, data, na_omit_all = TRUE, ...)
   ci_args = list(),
   ...
 )
+
+\method{nobs}{lm_list_lmhelprs}(object, ...)
 }
 \arguments{
 \item{models}{Character. Model syntax.
@@ -51,10 +54,12 @@ be passed to \code{lm()}.
 For the update method of the output
 of \code{\link[=many_lm]{many_lm()}}, these arguments will
 used to update the call to \code{\link[=many_lm]{many_lm()}}.
-For the coefficient method, these
-arguments will be ignored.}
+For other methods, these
+arguments will be passed to methods
+if applicable.}
 
-\item{object}{For the update method,
+\item{object}{For methods of the output
+of \code{\link[=many_lm]{many_lm()}},
 it is the output of \code{\link[=many_lm]{many_lm()}}.}
 
 \item{evaluate}{If \code{TRUE}, the
@@ -114,6 +119,9 @@ parameter estimates of the models.
 
 The \code{confint} method returns a two-column
 matrix of the confidence intervals.
+
+The \code{nobs} method returns the
+number of cases used in the models.
 }
 \description{
 Fit a list of linear
@@ -170,6 +178,11 @@ the models.
 
 The \code{confint} method computes the
 confidence intervals for the coefficients.
+
+The \code{nobs} method extracts the
+number of cases actually used in
+the analysis. Should be identical
+for all models.
 }
 \examples{
 
