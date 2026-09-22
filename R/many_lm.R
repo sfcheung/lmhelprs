@@ -461,6 +461,38 @@ nobs.lm_list_lmhelprs <- function(
   ns[1]
 }
 
+
+
+#' @details
+#' Unlike the corresponding method for
+#' the output of [stats::lm()],
+#' the `model.frame` method of the output
+#' of [many_lm()] does only one thing:
+#' extracts the stored model frame. It is
+#' because [many_lm()] is for fitting
+#' several models, with several formulas
+#' instead of only one.
+#'
+#' @return
+#' The `model.frame` method of the output
+#' of [many_lm()] returns a model frame,
+#' formed by merging the model frames of
+#' all models.
+#'
+#' @param formula For the `model.frame`
+#' method, this should be the output
+#' of [many_lm()].
+#'
+#' @rdname many_lm
+#' @export
+model.frame.lm_list_lmhelprs <- function(
+  formula,
+  ...
+) {
+  out <- merge_model_matrices(formula)
+  out
+}
+
 #' @noRd
 
 lm2list_free <- function(...) {

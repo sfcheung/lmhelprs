@@ -2,6 +2,7 @@
 
 S3method(coef,lm_list_lmhelprs)
 S3method(confint,lm_list_lmhelprs)
+S3method(model.frame,lm_list_lmhelprs)
 S3method(nobs,lm_list_lmhelprs)
 S3method(print,hierarchical_lm)
 S3method(print,lm_list_lmhelprs)

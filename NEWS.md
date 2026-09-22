@@ -1,4 +1,4 @@
-# lmhelprs 0.4.5.5
+# lmhelprs 0.4.5.6
 
 ## New Features
 
@@ -22,7 +22,9 @@
   of `many_lm()`.
   (0.4.5.5)
 
-
+- Added a `model.frame()` method for the
+  output of `many_lm()`.
+  (0.4.5.6)
 
 # lmhelprs 0.4.5
 

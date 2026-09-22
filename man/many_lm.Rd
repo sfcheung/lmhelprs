@@ -7,6 +7,7 @@
 \alias{vcov.lm_list_lmhelprs}
 \alias{confint.lm_list_lmhelprs}
 \alias{nobs.lm_list_lmhelprs}
+\alias{model.frame.lm_list_lmhelprs}
 \title{Fit Linear Models Defined By
 Model Syntax}
 \usage{
@@ -28,6 +29,8 @@ many_lm(models, data, na_omit_all = TRUE, ...)
 )
 
 \method{nobs}{lm_list_lmhelprs}(object, ...)
+
+\method{model.frame}{lm_list_lmhelprs}(formula, ...)
 }
 \arguments{
 \item{models}{Character. Model syntax.
@@ -98,6 +101,10 @@ is \code{stats::confint}}
 arguments to be passed to \code{ci_fun}.
 Default is \code{list(level = .95)},
 requesting 95\% confidence intervals.}
+
+\item{formula}{For the \code{model.frame}
+method, this should be the output
+of \code{\link[=many_lm]{many_lm()}}.}
 }
 \value{
 A list of the output of \code{lm()}. The
@@ -122,6 +129,11 @@ matrix of the confidence intervals.
 
 The \code{nobs} method returns the
 number of cases used in the models.
+
+The \code{model.frame} method of the output
+of \code{\link[=many_lm]{many_lm()}} returns a model frame,
+formed by merging the model frames of
+all models.
 }
 \description{
 Fit a list of linear
@@ -183,6 +195,15 @@ The \code{nobs} method extracts the
 number of cases actually used in
 the analysis. Should be identical
 for all models.
+
+Unlike the corresponding method for
+the output of \code{\link[stats:lm]{stats::lm()}},
+the \code{model.frame} method of the output
+of \code{\link[=many_lm]{many_lm()}} does only one thing:
+extracts the stored model frame. It is
+because \code{\link[=many_lm]{many_lm()}} is for fitting
+several models, with several formulas
+instead of only one.
 }
 \examples{
 
