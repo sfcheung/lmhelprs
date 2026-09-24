@@ -1,4 +1,4 @@
-# lmhelprs 0.4.5.7
+# lmhelprs 0.4.5.8
 
 ## New Features
 
@@ -29,6 +29,10 @@
 - Added a `variable.names()` method for
   the output of `many_lm().
   (0.4.5.7)
+
+- Added a `getCall()` method for the
+  output of `many_lm()`.
+  (0.4.5.8)
 
 # lmhelprs 0.4.5
 

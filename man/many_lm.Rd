@@ -2,6 +2,7 @@
 % Please edit documentation in R/many_lm.R
 \name{many_lm}
 \alias{many_lm}
+\alias{getCall}
 \alias{update.lm_list_lmhelprs}
 \alias{coef.lm_list_lmhelprs}
 \alias{vcov.lm_list_lmhelprs}
@@ -13,6 +14,8 @@
 Model Syntax}
 \usage{
 many_lm(models, data, na_omit_all = TRUE, ...)
+
+getCall(x, ...)
 
 \method{update}{lm_list_lmhelprs}(object, ..., evaluate = TRUE)
 
@@ -64,6 +67,9 @@ For other methods, these
 arguments will be passed to methods
 if applicable.}
 
+\item{x}{For the \code{getCall} method,
+this is the output of \code{\link[=many_lm]{many_lm()}}.}
+
 \item{object}{For methods of the output
 of \code{\link[=many_lm]{many_lm()}},
 it is the output of \code{\link[=many_lm]{many_lm()}}.}
@@ -112,6 +118,9 @@ of \code{\link[=many_lm]{many_lm()}}.}
 \value{
 A list of the output of \code{lm()}. The
 class is \code{lm_list_lmhelprs}.
+
+The \code{getCall} method returns a call
+stored in the output of \code{\link[=many_lm]{many_lm()}}.
 
 For the update method of the output
 of \code{\link[=many_lm]{many_lm()}}, if \code{evaluate} is \code{TRUE},
@@ -182,6 +191,9 @@ by a numeric vector of cases retained,
 determined by both missing data and
 the original value of the \code{subset}.
 }
+
+The \code{getCall} method of the output of
+\code{\link[=many_lm]{many_lm()}} extracts the stored call.
 
 The output of \code{\link[=many_lm]{many_lm()}} has a update
 method.

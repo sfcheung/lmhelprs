@@ -189,6 +189,28 @@ many_lm <- function(models,
     out2
   }
 
+#' @importFrom stats getCall
+
+#' @details
+#' The `getCall` method of the output of
+#' [many_lm()] extracts the stored call.
+#'
+#' @return
+#' The `getCall` method returns a call
+#' stored in the output of [many_lm()].
+#'
+#' @param x For the `getCall` method,
+#' this is the output of [many_lm()].
+#'
+#' @rdname many_lm
+#' @export
+getCall <- function(
+  x,
+  ...
+) {
+  attr(x, "call")
+}
+
 #' @details
 #' The output of [many_lm()] has a update
 #' method.
