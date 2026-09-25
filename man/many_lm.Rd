@@ -2,10 +2,41 @@
 % Please edit documentation in R/many_lm.R
 \name{many_lm}
 \alias{many_lm}
+\alias{getCall}
+\alias{update.lm_list_lmhelprs}
+\alias{coef.lm_list_lmhelprs}
+\alias{vcov.lm_list_lmhelprs}
+\alias{confint.lm_list_lmhelprs}
+\alias{nobs.lm_list_lmhelprs}
+\alias{model.frame.lm_list_lmhelprs}
+\alias{variable.names.lm_list_lmhelprs}
 \title{Fit Linear Models Defined By
 Model Syntax}
 \usage{
 many_lm(models, data, na_omit_all = TRUE, ...)
+
+getCall(x, ...)
+
+\method{update}{lm_list_lmhelprs}(object, ..., evaluate = TRUE)
+
+\method{coef}{lm_list_lmhelprs}(object, y = NULL, ...)
+
+\method{vcov}{lm_list_lmhelprs}(object, y = NULL, vcov_args = list(), ...)
+
+\method{confint}{lm_list_lmhelprs}(
+  object,
+  parm = NULL,
+  level = 0.95,
+  ci_fun = stats::confint,
+  ci_args = list(),
+  ...
+)
+
+\method{nobs}{lm_list_lmhelprs}(object, ...)
+
+\method{model.frame}{lm_list_lmhelprs}(formula, ...)
+
+\method{variable.names}{lm_list_lmhelprs}(object, ...)
 }
 \arguments{
 \item{models}{Character. Model syntax.
@@ -26,12 +57,99 @@ If \code{FALSE}, then missing data will be
 handled in each model separately by
 \code{lm()}.}
 
-\item{...}{Additional arguments. To
-be passed to \code{lm()}.}
+\item{...}{Additional arguments. For
+\code{\link[=many_lm]{many_lm()}}, these arguments will
+be passed to \code{lm()}.
+For the update method of the output
+of \code{\link[=many_lm]{many_lm()}}, these arguments will
+used to update the call to \code{\link[=many_lm]{many_lm()}}.
+For other methods, these
+arguments will be passed to methods
+if applicable.}
+
+\item{x}{For the \code{getCall} method,
+this is the output of \code{\link[=many_lm]{many_lm()}}.}
+
+\item{object}{For methods of the output
+of \code{\link[=many_lm]{many_lm()}},
+it is the output of \code{\link[=many_lm]{many_lm()}}.}
+
+\item{evaluate}{If \code{TRUE}, the
+updated call will be evaluated. If
+\code{FALSE}, the updated call will be
+returned.}
+
+\item{y}{For some methods,
+if set to a character vector,
+only the coefficients of the models
+of the response variables listed in
+\code{y} will be returned. If \code{NULL}, all
+coefficients will be returned.}
+
+\item{vcov_args}{A named list of
+arguments to be passed to \code{\link[stats:vcov]{stats::vcov()}}
+when computing the variance-covariance
+matrices
+of the regression coefficients.
+Default is \code{list()}, an empty list.}
+
+\item{parm}{The parameters for which
+the confidence intervals will be returned.
+If \code{NULL}, the confidence intervals
+for all coefficients will be returned.}
+
+\item{level}{The level of confidence
+of the confidence levels.}
+
+\item{ci_fun}{The function to be used
+to form the confidence intervals for
+regression coefficients. Default
+is \code{stats::confint}}
+
+\item{ci_args}{A named list of
+arguments to be passed to \code{ci_fun}.
+Default is \code{list(level = .95)},
+requesting 95\% confidence intervals.}
+
+\item{formula}{For the \code{model.frame}
+method, this should be the output
+of \code{\link[=many_lm]{many_lm()}}.}
 }
 \value{
 A list of the output of \code{lm()}. The
 class is \code{lm_list_lmhelprs}.
+
+The \code{getCall} method returns a call
+stored in the output of \code{\link[=many_lm]{many_lm()}}.
+
+For the update method of the output
+of \code{\link[=many_lm]{many_lm()}}, if \code{evaluate} is \code{TRUE},
+the updated output of \code{\link[=many_lm]{many_lm()}}
+will be returned. If \code{evaluate} is
+\code{FALSE}, the updated call will be
+returned.
+
+The \code{coef} method returns a numeric
+vector of the coefficients.
+
+The \code{vcov} method returns the
+variance-covariance matrix of the
+parameter estimates of the models.
+
+The \code{confint} method returns a two-column
+matrix of the confidence intervals.
+
+The \code{nobs} method returns the
+number of cases used in the models.
+
+The \code{model.frame} method of the output
+of \code{\link[=many_lm]{many_lm()}} returns a model frame,
+formed by merging the model frames of
+all models.
+
+The \code{variable.names} method returns
+a character vector of unique variable
+names in all the stored models.
 }
 \description{
 Fit a list of linear
@@ -73,6 +191,42 @@ by a numeric vector of cases retained,
 determined by both missing data and
 the original value of the \code{subset}.
 }
+
+The \code{getCall} method of the output of
+\code{\link[=many_lm]{many_lm()}} extracts the stored call.
+
+The output of \code{\link[=many_lm]{many_lm()}} has a update
+method.
+
+The \code{coef} method extracts the
+regression coefficients in the
+\code{lavaan} style: \code{y ~ x}, \code{y}
+the response variable and \code{x} a term.
+
+The \code{vcov} method is used to extract
+the variance-covariance matrices of
+the models.
+
+The \code{confint} method computes the
+confidence intervals for the coefficients.
+
+The \code{nobs} method extracts the
+number of cases actually used in
+the analysis. Should be identical
+for all models.
+
+Unlike the corresponding method for
+the output of \code{\link[stats:lm]{stats::lm()}},
+the \code{model.frame} method of the output
+of \code{\link[=many_lm]{many_lm()}} does only one thing:
+extracts the stored model frame. It is
+because \code{\link[=many_lm]{many_lm()}} is for fitting
+several models, with several formulas
+instead of only one.
+
+The \code{variable.names} method of the
+output of \code{\link[=many_lm]{many_lm()}} extract the
+variable names of all models.
 }
 \examples{
 

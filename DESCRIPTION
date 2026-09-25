@@ -1,6 +1,6 @@
 Package: lmhelprs
 Title: Helper Functions for Linear Model Analysis
-Version: 0.4.5
+Version: 0.4.5.8
 Authors@R:
     c(person(given = "Shu Fai",
              family = "Cheung",
@@ -29,8 +29,8 @@ Suggests:
     semPlot
 VignetteBuilder: knitr
 Depends:
-    R (>= 2.10)
+    R (>= 4.1.0)
 LazyData: true
 Imports:
     stats
-Config/roxygen2/version: 8.0.0
+Config/roxygen2/version: 8.1.0
