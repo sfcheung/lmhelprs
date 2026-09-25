@@ -1,3 +1,39 @@
+# lmhelprs 0.4.5.8
+
+## New Features
+
+- Added an `update()` method for the output
+  of `many_lm()`.
+  (0.4.5.1)
+
+- Added a `coef()` method for the output
+  of `many_lm()`.
+  (0.4.5.2)
+
+- Added a `vcov()` method for the output
+  of `many_lm()`.
+  (0.4.5.3)
+
+- Added a `confint()` method for the output
+  of `many_lm()`.
+  (0.4.5.4)
+
+- Added a `nobs()` method for the output
+  of `many_lm()`.
+  (0.4.5.5)
+
+- Added a `model.frame()` method for the
+  output of `many_lm()`.
+  (0.4.5.6)
+
+- Added a `variable.names()` method for
+  the output of `many_lm().
+  (0.4.5.7)
+
+- Added a `getCall()` method for the
+  output of `many_lm()`.
+  (0.4.5.8)
+
 # lmhelprs 0.4.5
 
 ## Miscellaneous
@@ -6,7 +42,6 @@
   regression models with exactly the
   same predictors.
   (0.4.4.1)
-
 
 # lmhelprs 0.4.4
 

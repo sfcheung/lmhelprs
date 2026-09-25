@@ -27,10 +27,13 @@
 #' significant digits in printing
 #' numerical results.
 #'
-#' @param ...  Other arguments. Not
-#' used.
-#'
-#'
+#' @param ...  Other arguments. For
+#' the `summary` method, these are
+#' arguments to be passed to the
+#' `summary` method for each model
+#' (usually [summary.lm()]). For the
+#' `print` method, these are arguments
+#' to be passed to [stats::printCoefmat()].
 #'
 #' @examples
 #'
@@ -44,7 +47,7 @@
 #' @export
 
 summary.lm_list_lmhelprs <- function(object, ...) {
-    out <- lapply(object, summary)
+    out <- lapply(object, summary, ...)
     class(out) <- c("summary_lm_list_lmhelprs", "summary_lm_list", class(out))
     attr(out, "cases_removed") <- attr(object, "cases_removed")
     attr(out, "call") <- attr(object, "call")
