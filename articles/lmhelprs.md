@@ -32,6 +32,11 @@ Let’s fit three models for illustration:
 ``` r
 
 library(lmhelprs)
+#> 
+#> Attaching package: 'lmhelprs'
+#> The following object is masked from 'package:stats':
+#> 
+#>     getCall
 data(data_test1)
 lm1a <- lm(y ~ x1 + x2, data_test1)
 lm1b <- lm(y ~ x1 + x2 + x3 + x4, data_test1)

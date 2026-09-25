@@ -44,10 +44,10 @@ out
 #> 
 #> The models:
 #> x3 ~ x2 + x1
-#> <environment: 0x55db77019de0>
+#> <environment: 0x55b741880758>
 #> x4 ~ x3
-#> <environment: 0x55db77019de0>
+#> <environment: 0x55b741880758>
 #> x5 ~ x4 * x1
-#> <environment: 0x55db77019de0>
+#> <environment: 0x55b741880758>
 #> 
 ```

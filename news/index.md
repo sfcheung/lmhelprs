@@ -1,5 +1,48 @@
 # Changelog
 
+## lmhelprs 0.4.5.8
+
+### New Features
+
+- Added an [`update()`](https://rdrr.io/r/stats/update.html) method for
+  the output of
+  [`many_lm()`](https://sfcheung.github.io/lmhelprs/reference/many_lm.md).
+  (0.4.5.1)
+
+- Added a [`coef()`](https://rdrr.io/r/stats/coef.html) method for the
+  output of
+  [`many_lm()`](https://sfcheung.github.io/lmhelprs/reference/many_lm.md).
+  (0.4.5.2)
+
+- Added a [`vcov()`](https://rdrr.io/r/stats/vcov.html) method for the
+  output of
+  [`many_lm()`](https://sfcheung.github.io/lmhelprs/reference/many_lm.md).
+  (0.4.5.3)
+
+- Added a [`confint()`](https://rdrr.io/r/stats/confint.html) method for
+  the output of
+  [`many_lm()`](https://sfcheung.github.io/lmhelprs/reference/many_lm.md).
+  (0.4.5.4)
+
+- Added a [`nobs()`](https://rdrr.io/r/stats/nobs.html) method for the
+  output of
+  [`many_lm()`](https://sfcheung.github.io/lmhelprs/reference/many_lm.md).
+  (0.4.5.5)
+
+- Added a [`model.frame()`](https://rdrr.io/r/stats/model.frame.html)
+  method for the output of
+  [`many_lm()`](https://sfcheung.github.io/lmhelprs/reference/many_lm.md).
+  (0.4.5.6)
+
+- Added a [`variable.names()`](https://rdrr.io/r/stats/case.names.html)
+  method for the output of \`many_lm(). (0.4.5.7)
+
+- Added a
+  [`getCall()`](https://sfcheung.github.io/lmhelprs/reference/many_lm.md)
+  method for the output of
+  [`many_lm()`](https://sfcheung.github.io/lmhelprs/reference/many_lm.md).
+  (0.4.5.8)
+
 ## lmhelprs 0.4.5
 
 CRAN release: 2026-06-30

@@ -15,6 +15,14 @@
   : Convert a 'lm_list' Object To a Parameter Table
 
 - [`many_lm()`](https://sfcheung.github.io/lmhelprs/reference/many_lm.md)
+  [`getCall()`](https://sfcheung.github.io/lmhelprs/reference/many_lm.md)
+  [`update(`*`<lm_list_lmhelprs>`*`)`](https://sfcheung.github.io/lmhelprs/reference/many_lm.md)
+  [`coef(`*`<lm_list_lmhelprs>`*`)`](https://sfcheung.github.io/lmhelprs/reference/many_lm.md)
+  [`vcov(`*`<lm_list_lmhelprs>`*`)`](https://sfcheung.github.io/lmhelprs/reference/many_lm.md)
+  [`confint(`*`<lm_list_lmhelprs>`*`)`](https://sfcheung.github.io/lmhelprs/reference/many_lm.md)
+  [`nobs(`*`<lm_list_lmhelprs>`*`)`](https://sfcheung.github.io/lmhelprs/reference/many_lm.md)
+  [`model.frame(`*`<lm_list_lmhelprs>`*`)`](https://sfcheung.github.io/lmhelprs/reference/many_lm.md)
+  [`variable.names(`*`<lm_list_lmhelprs>`*`)`](https://sfcheung.github.io/lmhelprs/reference/many_lm.md)
   : Fit Linear Models Defined By Model Syntax
 
 - [`print(`*`<hierarchical_lm>`*`)`](https://sfcheung.github.io/lmhelprs/reference/print.hierarchical_lm.md)

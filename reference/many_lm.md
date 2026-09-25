@@ -6,6 +6,36 @@ Fit a list of linear models defined by model syntax.
 
 ``` r
 many_lm(models, data, na_omit_all = TRUE, ...)
+
+getCall(x, ...)
+
+# S3 method for class 'lm_list_lmhelprs'
+update(object, ..., evaluate = TRUE)
+
+# S3 method for class 'lm_list_lmhelprs'
+coef(object, y = NULL, ...)
+
+# S3 method for class 'lm_list_lmhelprs'
+vcov(object, y = NULL, vcov_args = list(), ...)
+
+# S3 method for class 'lm_list_lmhelprs'
+confint(
+  object,
+  parm = NULL,
+  level = 0.95,
+  ci_fun = stats::confint,
+  ci_args = list(),
+  ...
+)
+
+# S3 method for class 'lm_list_lmhelprs'
+nobs(object, ...)
+
+# S3 method for class 'lm_list_lmhelprs'
+model.frame(formula, ...)
+
+# S3 method for class 'lm_list_lmhelprs'
+variable.names(object, ...)
 ```
 
 ## Arguments
@@ -29,13 +59,92 @@ many_lm(models, data, na_omit_all = TRUE, ...)
 
 - ...:
 
-  Additional arguments. To be passed to
-  [`lm()`](https://rdrr.io/r/stats/lm.html).
+  Additional arguments. For `many_lm()`, these arguments will be passed
+  to [`lm()`](https://rdrr.io/r/stats/lm.html). For the update method of
+  the output of `many_lm()`, these arguments will used to update the
+  call to `many_lm()`. For other methods, these arguments will be passed
+  to methods if applicable.
+
+- x:
+
+  For the `getCall` method, this is the output of `many_lm()`.
+
+- object:
+
+  For methods of the output of `many_lm()`, it is the output of
+  `many_lm()`.
+
+- evaluate:
+
+  If `TRUE`, the updated call will be evaluated. If `FALSE`, the updated
+  call will be returned.
+
+- y:
+
+  For some methods, if set to a character vector, only the coefficients
+  of the models of the response variables listed in `y` will be
+  returned. If `NULL`, all coefficients will be returned.
+
+- vcov_args:
+
+  A named list of arguments to be passed to
+  [`stats::vcov()`](https://rdrr.io/r/stats/vcov.html) when computing
+  the variance-covariance matrices of the regression coefficients.
+  Default is [`list()`](https://rdrr.io/r/base/list.html), an empty
+  list.
+
+- parm:
+
+  The parameters for which the confidence intervals will be returned. If
+  `NULL`, the confidence intervals for all coefficients will be
+  returned.
+
+- level:
+
+  The level of confidence of the confidence levels.
+
+- ci_fun:
+
+  The function to be used to form the confidence intervals for
+  regression coefficients. Default is
+  [`stats::confint`](https://rdrr.io/r/stats/confint.html)
+
+- ci_args:
+
+  A named list of arguments to be passed to `ci_fun`. Default is
+  `list(level = .95)`, requesting 95% confidence intervals.
+
+- formula:
+
+  For the `model.frame` method, this should be the output of
+  `many_lm()`.
 
 ## Value
 
 A list of the output of [`lm()`](https://rdrr.io/r/stats/lm.html). The
 class is `lm_list_lmhelprs`.
+
+The `getCall` method returns a call stored in the output of `many_lm()`.
+
+For the update method of the output of `many_lm()`, if `evaluate` is
+`TRUE`, the updated output of `many_lm()` will be returned. If
+`evaluate` is `FALSE`, the updated call will be returned.
+
+The `coef` method returns a numeric vector of the coefficients.
+
+The `vcov` method returns the variance-covariance matrix of the
+parameter estimates of the models.
+
+The `confint` method returns a two-column matrix of the confidence
+intervals.
+
+The `nobs` method returns the number of cases used in the models.
+
+The `model.frame` method of the output of `many_lm()` returns a model
+frame, formed by merging the model frames of all models.
+
+The `variable.names` method returns a character vector of unique
+variable names in all the stored models.
 
 ## Details
 
@@ -66,6 +175,32 @@ Note that the `subset` argument in the call in each model will be
 replaced by a numeric vector of cases retained, determined by both
 missing data and the original value of the `subset`.
 
+The `getCall` method of the output of `many_lm()` extracts the stored
+call.
+
+The output of `many_lm()` has a update method.
+
+The `coef` method extracts the regression coefficients in the `lavaan`
+style: `y ~ x`, `y` the response variable and `x` a term.
+
+The `vcov` method is used to extract the variance-covariance matrices of
+the models.
+
+The `confint` method computes the confidence intervals for the
+coefficients.
+
+The `nobs` method extracts the number of cases actually used in the
+analysis. Should be identical for all models.
+
+Unlike the corresponding method for the output of
+[`stats::lm()`](https://rdrr.io/r/stats/lm.html), the `model.frame`
+method of the output of `many_lm()` does only one thing: extracts the
+stored model frame. It is because `many_lm()` is for fitting several
+models, with several formulas instead of only one.
+
+The `variable.names` method of the output of `many_lm()` extract the
+variable names of all models.
+
 ## See also
 
 [`stats::lm()`](https://rdrr.io/r/stats/lm.html)
@@ -89,7 +224,7 @@ summary(out)
 #> 
 #> Model:
 #> x3 ~ x2 + x1
-#> <environment: 0x55db6e5a2c80>
+#> <environment: 0x55b7373d7668>
 #>             Estimate Std. Error t value Pr(>|t|)    
 #> (Intercept)  -0.0835     0.0968   -0.86  0.39067    
 #> x2           -0.0494     0.0896   -0.55  0.58289    
@@ -100,7 +235,7 @@ summary(out)
 #> 
 #> Model:
 #> x4 ~ x3
-#> <environment: 0x55db6e5a2c80>
+#> <environment: 0x55b7373d7668>
 #>             Estimate Std. Error t value Pr(>|t|)  
 #> (Intercept)  -0.1144     0.0866   -1.32    0.190  
 #> x3            0.2156     0.0846    2.55    0.012 *
@@ -110,7 +245,7 @@ summary(out)
 #> 
 #> Model:
 #> x5 ~ x4 * x1
-#> <environment: 0x55db6e5a2c80>
+#> <environment: 0x55b7373d7668>
 #>             Estimate Std. Error t value Pr(>|t|)   
 #> (Intercept) -0.10644    0.10399   -1.02   0.3086   
 #> x4           0.15124    0.11589    1.31   0.1950   

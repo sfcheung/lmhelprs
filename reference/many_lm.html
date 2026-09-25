@@ -9,7 +9,7 @@ models defined by model syntax."><meta property="og:image" content="https://sfch
 
     <a class="navbar-brand me-2" href="../index.html">lmhelprs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.5</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.5.8</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,7 +42,37 @@ models defined by model syntax.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">many_lm</span><span class="op">(</span><span class="va">models</span>, <span class="va">data</span>, na_omit_all <span class="op">=</span> <span class="cn">TRUE</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">many_lm</span><span class="op">(</span><span class="va">models</span>, <span class="va">data</span>, na_omit_all <span class="op">=</span> <span class="cn">TRUE</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">getCall</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for class 'lm_list_lmhelprs'</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/update.html" class="external-link">update</a></span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span>, evaluate <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for class 'lm_list_lmhelprs'</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html" class="external-link">coef</a></span><span class="op">(</span><span class="va">object</span>, y <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for class 'lm_list_lmhelprs'</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/vcov.html" class="external-link">vcov</a></span><span class="op">(</span><span class="va">object</span>, y <span class="op">=</span> <span class="cn">NULL</span>, vcov_args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for class 'lm_list_lmhelprs'</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span><span class="op">(</span></span>
+<span>  <span class="va">object</span>,</span>
+<span>  parm <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  level <span class="op">=</span> <span class="fl">0.95</span>,</span>
+<span>  ci_fun <span class="op">=</span> <span class="fu">stats</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/r/stats/confint.html" class="external-link">confint</a></span>,</span>
+<span>  ci_args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for class 'lm_list_lmhelprs'</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/nobs.html" class="external-link">nobs</a></span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for class 'lm_list_lmhelprs'</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/model.frame.html" class="external-link">model.frame</a></span><span class="op">(</span><span class="va">formula</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for class 'lm_list_lmhelprs'</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/case.names.html" class="external-link">variable.names</a></span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -74,14 +104,113 @@ handled in each model separately by
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>Additional arguments. To
-be passed to <code><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm()</a></code>.</p></dd>
+<dd><p>Additional arguments. For
+<code>many_lm()</code>, these arguments will
+be passed to <code><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm()</a></code>.
+For the update method of the output
+of <code>many_lm()</code>, these arguments will
+used to update the call to <code>many_lm()</code>.
+For other methods, these
+arguments will be passed to methods
+if applicable.</p></dd>
+
+
+<dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
+<dd><p>For the <code>getCall</code> method,
+this is the output of <code>many_lm()</code>.</p></dd>
+
+
+<dt id="arg-object">object<a class="anchor" aria-label="anchor" href="#arg-object"></a></dt>
+<dd><p>For methods of the output
+of <code>many_lm()</code>,
+it is the output of <code>many_lm()</code>.</p></dd>
+
+
+<dt id="arg-evaluate">evaluate<a class="anchor" aria-label="anchor" href="#arg-evaluate"></a></dt>
+<dd><p>If <code>TRUE</code>, the
+updated call will be evaluated. If
+<code>FALSE</code>, the updated call will be
+returned.</p></dd>
+
+
+<dt id="arg-y">y<a class="anchor" aria-label="anchor" href="#arg-y"></a></dt>
+<dd><p>For some methods,
+if set to a character vector,
+only the coefficients of the models
+of the response variables listed in
+<code>y</code> will be returned. If <code>NULL</code>, all
+coefficients will be returned.</p></dd>
+
+
+<dt id="arg-vcov-args">vcov_args<a class="anchor" aria-label="anchor" href="#arg-vcov-args"></a></dt>
+<dd><p>A named list of
+arguments to be passed to <code><a href="https://rdrr.io/r/stats/vcov.html" class="external-link">stats::vcov()</a></code>
+when computing the variance-covariance
+matrices
+of the regression coefficients.
+Default is <code><a href="https://rdrr.io/r/base/list.html" class="external-link">list()</a></code>, an empty list.</p></dd>
+
+
+<dt id="arg-parm">parm<a class="anchor" aria-label="anchor" href="#arg-parm"></a></dt>
+<dd><p>The parameters for which
+the confidence intervals will be returned.
+If <code>NULL</code>, the confidence intervals
+for all coefficients will be returned.</p></dd>
+
+
+<dt id="arg-level">level<a class="anchor" aria-label="anchor" href="#arg-level"></a></dt>
+<dd><p>The level of confidence
+of the confidence levels.</p></dd>
+
+
+<dt id="arg-ci-fun">ci_fun<a class="anchor" aria-label="anchor" href="#arg-ci-fun"></a></dt>
+<dd><p>The function to be used
+to form the confidence intervals for
+regression coefficients. Default
+is <code><a href="https://rdrr.io/r/stats/confint.html" class="external-link">stats::confint</a></code></p></dd>
+
+
+<dt id="arg-ci-args">ci_args<a class="anchor" aria-label="anchor" href="#arg-ci-args"></a></dt>
+<dd><p>A named list of
+arguments to be passed to <code>ci_fun</code>.
+Default is <code>list(level = .95)</code>,
+requesting 95% confidence intervals.</p></dd>
+
+
+<dt id="arg-formula">formula<a class="anchor" aria-label="anchor" href="#arg-formula"></a></dt>
+<dd><p>For the <code>model.frame</code>
+method, this should be the output
+of <code>many_lm()</code>.</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>A list of the output of <code><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm()</a></code>. The
 class is <code>lm_list_lmhelprs</code>.</p>
+<p>The <code>getCall</code> method returns a call
+stored in the output of <code>many_lm()</code>.</p>
+<p>For the update method of the output
+of <code>many_lm()</code>, if <code>evaluate</code> is <code>TRUE</code>,
+the updated output of <code>many_lm()</code>
+will be returned. If <code>evaluate</code> is
+<code>FALSE</code>, the updated call will be
+returned.</p>
+<p>The <code>coef</code> method returns a numeric
+vector of the coefficients.</p>
+<p>The <code>vcov</code> method returns the
+variance-covariance matrix of the
+parameter estimates of the models.</p>
+<p>The <code>confint</code> method returns a two-column
+matrix of the confidence intervals.</p>
+<p>The <code>nobs</code> method returns the
+number of cases used in the models.</p>
+<p>The <code>model.frame</code> method of the output
+of <code>many_lm()</code> returns a model frame,
+formed by merging the model frames of
+all models.</p>
+<p>The <code>variable.names</code> method returns
+a character vector of unique variable
+names in all the stored models.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -121,6 +250,34 @@ determined by both missing data and
 the original value of the <code>subset</code>.</p>
 </div>
 
+<p>The <code>getCall</code> method of the output of
+<code>many_lm()</code> extracts the stored call.</p>
+<p>The output of <code>many_lm()</code> has a update
+method.</p>
+<p>The <code>coef</code> method extracts the
+regression coefficients in the
+<code>lavaan</code> style: <code>y ~ x</code>, <code>y</code>
+the response variable and <code>x</code> a term.</p>
+<p>The <code>vcov</code> method is used to extract
+the variance-covariance matrices of
+the models.</p>
+<p>The <code>confint</code> method computes the
+confidence intervals for the coefficients.</p>
+<p>The <code>nobs</code> method extracts the
+number of cases actually used in
+the analysis. Should be identical
+for all models.</p>
+<p>Unlike the corresponding method for
+the output of <code><a href="https://rdrr.io/r/stats/lm.html" class="external-link">stats::lm()</a></code>,
+the <code>model.frame</code> method of the output
+of <code>many_lm()</code> does only one thing:
+extracts the stored model frame. It is
+because <code>many_lm()</code> is for fitting
+several models, with several formulas
+instead of only one.</p>
+<p>The <code>variable.names</code> method of the
+output of <code>many_lm()</code> extract the
+variable names of all models.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
@@ -145,7 +302,7 @@ the original value of the <code>subset</code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Model:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> x3 ~ x2 + x1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x55db6e5a2c80&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x55b7373d7668&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error t value Pr(&gt;|t|)    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  -0.0835     0.0968   -0.86  0.39067    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> x2           -0.0494     0.0896   -0.55  0.58289    </span>
@@ -156,7 +313,7 @@ the original value of the <code>subset</code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Model:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> x4 ~ x3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x55db6e5a2c80&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x55b7373d7668&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error t value Pr(&gt;|t|)  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  -0.1144     0.0866   -1.32    0.190  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> x3            0.2156     0.0846    2.55    0.012 *</span>
@@ -166,7 +323,7 @@ the original value of the <code>subset</code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Model:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> x5 ~ x4 * x1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x55db6e5a2c80&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x55b7373d7668&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error t value Pr(&gt;|t|)   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) -0.10644    0.10399   -1.02   0.3086   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> x4           0.15124    0.11589    1.31   0.1950   </span>
