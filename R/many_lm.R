@@ -204,7 +204,7 @@ many_lm <- function(models,
 #'
 #' @rdname many_lm
 #' @export
-getCall <- function(
+getCall.lm_list_lmhelprs <- function(
   x,
   ...
 ) {

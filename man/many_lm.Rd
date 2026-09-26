@@ -2,7 +2,7 @@
 % Please edit documentation in R/many_lm.R
 \name{many_lm}
 \alias{many_lm}
-\alias{getCall}
+\alias{getCall.lm_list_lmhelprs}
 \alias{update.lm_list_lmhelprs}
 \alias{coef.lm_list_lmhelprs}
 \alias{vcov.lm_list_lmhelprs}
@@ -15,7 +15,7 @@ Model Syntax}
 \usage{
 many_lm(models, data, na_omit_all = TRUE, ...)
 
-getCall(x, ...)
+\method{getCall}{lm_list_lmhelprs}(x, ...)
 
 \method{update}{lm_list_lmhelprs}(object, ..., evaluate = TRUE)
 

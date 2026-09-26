@@ -1,4 +1,4 @@
-# lmhelprs 0.4.5.8
+# lmhelprs 0.4.5.9
 
 ## New Features
 
@@ -32,7 +32,7 @@
 
 - Added a `getCall()` method for the
   output of `many_lm()`.
-  (0.4.5.8)
+  (0.4.5.8, 0.4.5.9)
 
 # lmhelprs 0.4.5
 
