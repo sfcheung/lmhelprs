@@ -1,6 +1,6 @@
 # Changelog
 
-## lmhelprs 0.4.5.8
+## lmhelprs 0.4.5.9
 
 ### New Features
 
@@ -37,11 +37,10 @@
 - Added a [`variable.names()`](https://rdrr.io/r/stats/case.names.html)
   method for the output of \`many_lm(). (0.4.5.7)
 
-- Added a
-  [`getCall()`](https://sfcheung.github.io/lmhelprs/reference/many_lm.md)
-  method for the output of
+- Added a [`getCall()`](https://rdrr.io/r/stats/update.html) method for
+  the output of
   [`many_lm()`](https://sfcheung.github.io/lmhelprs/reference/many_lm.md).
-  (0.4.5.8)
+  (0.4.5.8, 0.4.5.9)
 
 ## lmhelprs 0.4.5
 

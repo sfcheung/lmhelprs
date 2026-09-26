@@ -15,7 +15,7 @@
   : Convert a 'lm_list' Object To a Parameter Table
 
 - [`many_lm()`](https://sfcheung.github.io/lmhelprs/reference/many_lm.md)
-  [`getCall()`](https://sfcheung.github.io/lmhelprs/reference/many_lm.md)
+  [`getCall(`*`<lm_list_lmhelprs>`*`)`](https://sfcheung.github.io/lmhelprs/reference/many_lm.md)
   [`update(`*`<lm_list_lmhelprs>`*`)`](https://sfcheung.github.io/lmhelprs/reference/many_lm.md)
   [`coef(`*`<lm_list_lmhelprs>`*`)`](https://sfcheung.github.io/lmhelprs/reference/many_lm.md)
   [`vcov(`*`<lm_list_lmhelprs>`*`)`](https://sfcheung.github.io/lmhelprs/reference/many_lm.md)
