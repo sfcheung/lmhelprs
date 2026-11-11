@@ -223,9 +223,11 @@ summary(out)
 #> Call:
 #> many_lm(models = mod, data = data_test1)
 #> 
+#>  ---------------------------------------------------------------- 
+#> 
 #> Model:
 #> x3 ~ x2 + x1
-#> <environment: 0x55b6ed1a1280>
+#> <environment: 0x5d7fb6aa7b98>
 #>             Estimate Std. Error t value Pr(>|t|)    
 #> (Intercept)  -0.0835     0.0968   -0.86  0.39067    
 #> x2           -0.0494     0.0896   -0.55  0.58289    
@@ -234,9 +236,11 @@ summary(out)
 #> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 #> R-square = 0.143. Adjusted R-square = 0.125. F(2, 97) = 8.079, p < .001
 #> 
+#>  ---------------------------------------------------------------- 
+#> 
 #> Model:
 #> x4 ~ x3
-#> <environment: 0x55b6ed1a1280>
+#> <environment: 0x5d7fb6aa7b98>
 #>             Estimate Std. Error t value Pr(>|t|)  
 #> (Intercept)  -0.1144     0.0866   -1.32    0.190  
 #> x3            0.2156     0.0846    2.55    0.012 *
@@ -244,9 +248,11 @@ summary(out)
 #> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 #> R-square = 0.062. Adjusted R-square = 0.053. F(1, 98) = 6.489, p = 0.012
 #> 
+#>  ---------------------------------------------------------------- 
+#> 
 #> Model:
 #> x5 ~ x4 * x1
-#> <environment: 0x55b6ed1a1280>
+#> <environment: 0x5d7fb6aa7b98>
 #>             Estimate Std. Error t value Pr(>|t|)   
 #> (Intercept) -0.10644    0.10399   -1.02   0.3086   
 #> x4           0.15124    0.11589    1.31   0.1950   
