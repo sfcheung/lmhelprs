@@ -1,4 +1,4 @@
-# lmhelprs 0.4.5.9
+# lmhelprs 0.4.5.10
 
 ## New Features
 
@@ -33,6 +33,15 @@
 - Added a `getCall()` method for the
   output of `many_lm()`.
   (0.4.5.8, 0.4.5.9)
+
+## Miscellaneous
+
+- In `print.summary_lm_list_lmhelprs()`,
+  if the model summary is not generated
+  by `summary.glm()` or `summary.lm()`,
+  the default print method will be used
+  to print the summary.
+  (0.4.5.10)
 
 # lmhelprs 0.4.5
 

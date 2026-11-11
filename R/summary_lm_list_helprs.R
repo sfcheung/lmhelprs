@@ -65,6 +65,13 @@ print.summary_lm_list_lmhelprs <- function(x, digits = 3, ...) {
     cat("Call:\n")
     print(x_call)
     for (xi in x) {
+        cat("\n", strrep("-", round(.8 * getOption("width"))), "\n")
+        if (isTRUE(!(class(xi)[1] %in% c("summary.glm", "summary.lm")))) {
+           # ==== Not pure glm or lm summary ====
+           cat("\n")
+           print(xi, ...)
+           next
+        }
         cat("\nModel:\n")
         print(xi$call$formula)
         stats::printCoefmat(xi$coefficients, digits = digits, ...)
